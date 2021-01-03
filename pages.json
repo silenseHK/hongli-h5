@@ -1,0 +1,356 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/index/notice",
+			"style": {
+				"navigationBarTitleText": "uView-index"
+			}
+		},
+		{
+			"path": "pages/center/index",
+			"style": {
+				"navigationBarTitleText": "uView-center"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		}, {
+			"path": "pages/shopping/index",
+			"style": {
+				"navigationBarBackgroundColor": "#000000",
+
+				"navigationBarTitleText": "Shopping Cart"
+			}
+		}, {
+			"path": "pages/activity/index",
+			"style": {
+				"navigationBarTitleText": "Activity Center",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/enjoy/index",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+
+			}
+		}, {
+			"path": "pages/mine/index",
+			"style": {
+				"navigationBarTitleText": "Personal Center",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/commodity/index",
+			"style": {
+				"navigationBarTitleText": "Product Detail",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/promotion/index",
+			"style": {
+				"navigationBarTitleText": "My Promotion",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/detailSub/detailSub",
+			"style": {
+				"navigationBarTitleText": "Detail Of Sub Commision",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/friends/friends",
+			"style": {
+				"navigationBarTitleText": "Invite Friends",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/enjoy/rule/rule",
+			"style": {
+				"navigationBarTitleText": "Rules of guess",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/enjoy/recharge/recharge",
+			"style": {
+				"navigationBarTitleText": "Recharge",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/enjoy/trend/trend",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏 
+				"navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		}, {
+			"path": "pages/enjoy/recordList/recordList",
+			"style": {
+				"navigationBarTitleText": "Other Record",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/enjoy/enjoyOrder/enjoyOrder",
+			"style": {
+				"navigationBarTitleText": "Jewelry Order",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}
+
+		, {
+			"path": "pages/historiDetail/historiDetail",
+			"style": {
+				"navigationBarTitleText": "Complaints&Suggestions",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/settings",
+			"style": {
+				"navigationBarTitleText": "Settings",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/security/security",
+			"style": {
+				"navigationBarTitleText": "Account Security",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/modifyName/modifyName",
+			"style": {
+				"navigationBarTitleText": "Modify Name",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/modifyWord/modifyWord",
+			"style": {
+				"navigationBarTitleText": "Modify Login Password",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/about",
+			"style": {
+				"navigationBarTitleText": "About Us",
+				"navigationBarBackgroundColor": "balck"
+			}
+		},
+		{
+			"path": "pages/settings/privacy",
+			"style": {
+				"navigationBarTitleText": "Privacy Policy",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/agreement",
+			"style": {
+				"navigationBarTitleText": "Risk Disclosure Agreement",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/aboutinfo",
+			"style": {
+				"navigationBarTitleText": "About Us",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}
+
+		, {
+			"path": "pages/mine/wallet",
+			"style": {
+				"navigationBarTitleText": "My Wallet",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/settings/bankCard",
+			"style": {
+				"navigationBarTitleText": "My Bank Card",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/address/index",
+			"style": {
+				"navigationBarTitleText": "My map",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/address/addSite",
+			"style": {
+				"navigationBarTitleText": "add map",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/mine/withdrawal",
+			"style": {
+				"navigationBarTitleText": "Withdrawal",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/activity/signIn",
+			"style": {
+				"navigationBarTitleText": "Sign In",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/activity/envelope",
+			"style": {
+				"navigationBarTitleText": "Red Envelope Task",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/activity/redEnv",
+			"style": {
+				"navigationBarTitleText": "Red-Envelope",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}, {
+			"path": "pages/mine/myOrder",
+			"style": {
+				"navigationBarTitleText": "Red-Envelope",
+				"navigationBarBackgroundColor": "balck"
+			}
+		}
+
+		, {
+			"path": "pages/mine/records",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+
+		}, {
+			"path": "pages/mine/envelopes",
+			"style": {
+				"navigationStyle": "custom", // 隐藏系统导航栏
+				"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+
+		}, {
+			"path": "pages/promotion/applyBalance",
+			"style": {
+				"navigationBarTitleText": "Apply To Balance",
+				"navigationBarBackgroundColor": "balck"
+			}
+
+		}, {
+			"path": "pages/activity/signRule",
+			"style": {
+				"navigationBarTitleText": "Rule",
+				"navigationBarBackgroundColor": "balck"
+			}
+
+		}, {
+			"path": "pages/language/language",
+			"style": {
+				"navigationBarTitleText": "Language",
+				"navigationBarBackgroundColor": "balck"
+			}
+
+		}, {
+			"path": "pages/rechargeRecord/rechargeRecord",
+			"style": {
+				"navigationBarTitleText": "Recharge Record",
+				"navigationBarBackgroundColor": "balck"
+			}
+
+		}, {
+			"path": "pages/promotionList/promotionList",
+			"style": {
+				"navigationBarTitleText": "Recharge Record",
+				"navigationBarBackgroundColor": "balck"
+			}
+
+		}
+	    ,{
+            "path" : "pages/application/application",
+            "style" :                                                                                    
+            {
+               "navigationBarTitleText": "Apply Records",
+               "navigationBarBackgroundColor": "balck"
+            }
+            
+        },{
+			"path": "pages/forgetPassword/index",
+			"style": {
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+			"path": "pages/myForgetPassword/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+			}
+		},
+		{
+            "path" : "pages/invite/invite",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/register/register",
+            "style" :                                                                                    
+            {
+              "navigationStyle": "custom", // 隐藏系统导航栏
+              "navigationBarTextStyle": "black" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "shop",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#909399",
+		"selectedColor": "#df974b",
+		"borderStyle": "black",
+		"backgroundColor": "#EEEEEE",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home-active.png",
+				"text": "Home"
+			},
+			{
+				"pagePath": "pages/activity/index",
+				"iconPath": "static/activity.png",
+				"selectedIconPath": "static/activity-active.png",
+				"text": "Activity"
+			}, {
+				"pagePath": "pages/shopping/index",
+				"iconPath": "static/shopping.png",
+				"selectedIconPath": "static/shopping-active.png",
+				"text": "Shopping"
+			}, {
+				"pagePath": "pages/enjoy/index",
+				"iconPath": "static/enjoy.png",
+				"selectedIconPath": "static/enjoy-active.png",
+				"text": "Enjoy"
+			}, {
+				"pagePath": "pages/mine/index",
+				"iconPath": "static/mine.png",
+				"selectedIconPath": "static/mine-active.png",
+				"text": "Mine"
+			}
+		]
+	}
+}
