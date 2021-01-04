@@ -92,6 +92,13 @@ http.interceptors.response.use((response) => { /* 对响应成功做点什么 �
 		});
 		switch(Number(response.data.code)){
 			case 401:
+				uni.removeStorageSync('token')
+				uni.removeStorageSync('nikename')
+				uni.removeStorageSync('money')
+				uni.removeStorageSync('code')
+				uni.removeStorageSync('commission')
+				uni.removeStorageSync('id')
+				uni.removeStorageSync('phone')
 				uni.hideLoading()
 				setTimeout(() =>{
 					uni.navigateTo({

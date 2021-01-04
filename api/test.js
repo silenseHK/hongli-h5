@@ -75,6 +75,11 @@ export const getReward = data=>http.post('activity/task_reward_get',data)
 export const getGroup = (data)=>http.post('/groupUrl',data)
 export const getservice = (data)=>http.post('/serviceUrl',data)
 
+/**
+ *  弹窗
+ */
+export const getAlert = (data)=>http.get('/h5Alert', data)
+
 //充值接口
 export const getRecharge  = (data) =>http.post('/user/recharge',data)
 export const getRechargeList = (data) =>http.post('/user/rechargelog',data)

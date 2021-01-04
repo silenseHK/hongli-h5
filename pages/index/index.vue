@@ -62,20 +62,26 @@
 		<!-- 列表区域--end -->
 
 		<!-- 模态框 -->
-		<u-modal v-model="isModul" :show-title="false" confirm-color="#a7866e" border-radius="22" show-cancel-button
+		<u-modal v-model="showLoginAlert" :show-title="false" confirm-color="#a7866e" border-radius="22" show-cancel-button
 		 show-confirm-button :confirm-text="i18n.tabbar.group" :cancel-text="i18n.tabbar.chat" @confirm="handelHaidel"
 		 @cancel="handlehia">
 			<image src="../../static/home/home_dialog_top.ac6d64ef.png" mode="scaleToFill" style="width: 100%; height: 300upx; position: relative;">
-				<u-icon name="close" color="#8d8d8d" size="28" style="position: absolute; top: 10px; right: 12px;" @click="isModul = false;"></u-icon>
+				<u-icon name="close" color="#8d8d8d" size="28" style="position: absolute; top: 10px; right: 12px;" @click="showLoginAlert = false;"></u-icon>
 			</image>
 			<view class="modal-top">
-				<text class="modal-text">
-					Dear new member:
-					Welcome to join SKY. This will be the starting point of your prosperity. Please add the official forecast team in
-					time and follow the group announcement in time!
-					We hope that every member who joins Sky Shop can become a millionaire through investment
-					If you have any questions, please click "Service" to contact the account manager
-				</text>
+				<rich-text :nodes="alertContentLogin"></rich-text>
+			</view>
+		</u-modal>
+		
+		<!-- 公告弹窗-未登录 -->
+		<u-modal v-model="showLogoutAlert" :show-title="false" confirm-color="#a7866e" border-radius="22" :show-cancel-button="false"
+		 :show-confirm-button="false" :confirm-text="i18n.tabbar.group" :cancel-text="i18n.tabbar.chat" @confirm="handelHaidel"
+		 @cancel="handlehia">
+			<image src="../../static/home/home_dialog_top.ac6d64ef.png" mode="scaleToFill" style="width: 100%; height: 300upx; position: relative;">
+				<u-icon name="close" color="#8d8d8d" size="28" style="position: absolute; top: 10px; right: 12px;" @click="hideLogoutAlert()"></u-icon>
+			</image>
+			<view class="modal-top" style="max-height:160px;">
+				<rich-text :nodes="alertContentLogout"></rich-text>
 			</view>
 		</u-modal>
 
@@ -97,6 +103,11 @@
 				type: 'text',
 				keyword: '',
 				isModul: false,
+				alertContentLogout: '',
+				alertContentLogin: '',
+				showLoginAlert: false,
+				showLogoutAlert: false,
+				isAlertLoginAlert: false,
 
 				list: [{
 						image: '../../static/home/banner01.jpg',
@@ -196,20 +207,24 @@
 			}
 		},
 		onReady() {
-			this.isModul = true;
+			// this.isModul = true;
+			const token = uni.getStorageSync('token')
+			
 		},
 		onShow() {
 			const token = uni.getStorageSync('token')
-
-			if (token) {
-
+			if (token && this.isAlertLoginAlert) {
 				// this.isModul = true
 				this.isGroup = true
+				// this.showLoginAlert = true;
 				return;
 			}
-
 			this.isModul = false
 			this.isGroup = false
+			this.showLogoutAlert = true;
+		},
+		onLoad(){
+			this.handelAlert();
 		},
 		methods: {
 			// change() {
@@ -223,6 +238,19 @@
 			// 		url: 'index'
 			// 	})
 			// },
+			
+			hideLogoutAlert(){
+				this.showLogoutAlert = false;
+				const token = uni.getStorageSync('token')
+				if (token) {
+					// this.isModul = true
+					this.isGroup = true
+					this.showLoginAlert = true;
+					this.isAlertLoginAlert = true;
+					return;
+				}
+			},
+			
 			commodity(item) {
 				// console.log(item)
 				this.$Router.push({
@@ -232,6 +260,17 @@
 					}
 				})
 			},
+			
+			async handelAlert() {
+				this.isModul = false;
+				const data = await this.$api.getAlert()
+				if (data.code === 200) {
+					const result = data.data;
+					[this.alertContentLogout, this.alertContentLogin] = [result.logout_alert, result.login_alert]
+					// [this.alertContentLogout, this.alertContentLogin] = ["<h1>你好</h1>", result.login_alert]
+				}
+			},
+			
 			async handelHaidel() {
 				this.isModul = false;
 				const data = await this.$api.getGroup()
@@ -354,5 +393,10 @@
 
 	.modal-text {
 		font-size: 18upx;
+	}
+	
+	.modal-top {
+		font-size: 18upx !important;
+		line-height:46upx !important;
 	}
 </style>

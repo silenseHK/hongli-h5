@@ -29,6 +29,15 @@ let $ajax = (url,parms) =>{
 						});
 						switch(Number(code)){
 							case 401:
+								uni.removeStorage({
+								    key: 'token',
+								    success: function (res) {
+								        console.log('success');
+								    },
+									fail: function(err){
+										console.log(err)
+									}
+								});
 								uni.hideLoading()
 								setTimeout(() =>{
 									uni.navigateTo({
