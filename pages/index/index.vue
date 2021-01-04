@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 顶部navbar--start -->
-		<view>
+		<!-- <view>
 			<view class="app-customer" @click="handelService" :class="isServer?'service-bg1':'service-bg'" v-show="isGroup">
 				<view class=" u-flex-col u-row-center u-p-t-20">
 					<image src="../../static/service.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
@@ -18,7 +18,10 @@
 					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">WhatsApp</text>
 				</view>
 			</view>
-		</view>
+		</view> -->
+		
+		<service></service>
+		
 		<view class="app-download">
 			<view class="u-flex">
 				<image src="../../static/app.png" mode="" class="app-img"></image>
@@ -90,10 +93,12 @@
 <script>
 	import uniNavBar from '../../components/uni-nav-bar/uni-nav-bar.vue'
 	import popup from "@/components/ge-popup.vue";
+	import service from '../../components/Service.vue';
 	export default {
 		components: {
 			uniNavBar,
-			popup
+			popup,
+			service
 		},
 		data() {
 			return {

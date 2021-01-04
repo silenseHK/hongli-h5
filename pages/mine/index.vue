@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 客服中心 --start -->
-		<view>
+		<!-- <view>
 			<view class="app-customer" @click="handelService" :class="isServer?'service-bg1':'service-bg'" v-show="isGroup">
 				<view class=" u-flex-col u-row-center u-p-t-20">
 					<image src="../../static/service.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
@@ -20,7 +20,8 @@
 
 
 			</view>
-		</view>
+		</view> -->
+		<service></service>
 		<!-- 客服中心 --end-->
 		<view class="setting">
 			<view class="u-flex-col user-box u-p-l-30 u-p-r-20 u-p-b-30 ">
@@ -97,7 +98,11 @@
 </template>
 
 <script>
+	import service from '../../components/Service.vue';
 	export default {
+		components: {
+			service
+		},
 		data() {
 			return {
 				isGroup: false,

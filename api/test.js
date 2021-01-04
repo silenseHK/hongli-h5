@@ -74,6 +74,7 @@ export const getReward = data=>http.post('activity/task_reward_get',data)
 
 export const getGroup = (data)=>http.post('/groupUrl',data)
 export const getservice = (data)=>http.post('/serviceUrl',data)
+export const getServiceSetting = (data)=>http.get('/serviceSetting',data)
 
 /**
  *  弹窗

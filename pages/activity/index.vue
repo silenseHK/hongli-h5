@@ -1,29 +1,27 @@
 <template>
 	<view>
 		<!-- 客服中心 --start -->
+		<!--
 		<view>
 			<view class="app-customer" @click="handelService" :class="isServer?'service-bg1':'service-bg'" v-show="isGroup">
 				<view class=" u-flex-col u-row-center u-p-t-20">
 					<image src="../../static/service.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
-					<!-- <text class="u-text-center" style="color: white; font-size: 20upx;">Service</text> -->
 					<text class="u-text-center" style="color: white; font-size: 20upx;">{{i18.tabbar.service}}</text>
 				</view>
 			</view>
 			<view class="" v-if="isServer">
 				<view class="app-grouap  u-flex-col u-row-center u-p-t-10" @tap="handelservices">
 					<image src="../../static/phoneicon.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
-					<!-- <text class="u-text-center u-p-b-20" style="color: white; font-size: 20upx;">Group</text> -->
 					<text class="u-text-center u-p-b-20" style="color: white; font-size: 20upx;">{{i18.tabbar.group}}</text>
 				</view>
 				<view class="app-whates  u-flex-col u-row-center u-p-t-10" @tap="handelGrop">
 					<image src="../../static/whatsapp.f636c058.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
-					<!-- <text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">WhatsApp</text> -->
 					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">{{i18.tabbar.whatsApp}}</text>
 				</view>
-
-
 			</view>
 		</view>
+		-->
+		<service></service>
 		<!-- 客服中心 --end-->
 		<!-- 轮播图 --start -->
 		<view class="wrap ">
@@ -54,7 +52,11 @@
 </template>
 
 <script>
+	import service from '../../components/Service.vue';
 	export default {
+		components: {
+			service
+		},
 		data() {
 			return {
 				isGroup: false,

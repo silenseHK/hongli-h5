@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<!-- 客服中心 --start -->
-		<view>
+		<!-- <view>
 			<view class="app-customer" @click="handelService" :class="isServer ? 'service-bg1' : 'service-bg'" v-show="isGroup">
 				<view class="u-flex-col u-row-center u-p-t-20">
 					<image src="../../static/service.png" mode="" style="width: 40upx; height: 40upx; margin: auto"></image>
@@ -18,7 +18,8 @@
 					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx">WhatsApp</text>
 				</view>
 			</view>
-		</view>
+		</view> -->
+		<service></service>
 		<!-- 客服中心 --end-->
 		<!-- 顶部navbar--start -->
 
@@ -346,12 +347,14 @@
 	import formDate from "../../utils/getTimes.js";
 	import OrderGren from "../../components/order/OrderGren.vue";
 	import OrdeLists from "../../components/OrderLists.vue";
+	import service from '../../components/Service.vue';
 	export default {
 		components: {
 			uniNavBar,
 			countdown,
 			OrderGren,
 			OrdeLists,
+			service
 		},
 		data() {
 			return {
