@@ -32,6 +32,7 @@ const mutations = {
 		uni.setStorageSync('code', payload.code)
 		uni.setStorageSync('phone', payload.phone)
 		uni.setStorageSync('id', payload.id)
+		uni.setStorageSync('ping', payload.ping)
 
 		state.id = payload.id;
 		state.nikename = payload.nikename;

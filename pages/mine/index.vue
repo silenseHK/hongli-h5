@@ -219,6 +219,7 @@
 				uni.removeStorageSync('code')
 				uni.removeStorageSync('commission')
 				uni.removeStorageSync('id')
+				uni.removeStorageSync('ping')
 				uni.removeStorageSync('phone')
 
 			},
