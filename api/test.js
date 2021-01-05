@@ -100,3 +100,6 @@ export const requestCommission = (data)=>http.post('/withdrawal/agent/reward',da
 export const requestInfo = (data)=>http.get('/user/info',data)
 //获取支付方式
 export const getrechargemethods = (data)=>http.post('/user/rechargemethods',data)
+
+//获取统计
+export const statistics = (data)=>http.get('/betting/statistics',data)

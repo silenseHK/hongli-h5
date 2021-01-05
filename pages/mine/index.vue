@@ -76,6 +76,7 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="file-text" :title="i18.mine.order" @click="handelOrder"></u-cell-item>
+				<u-cell-item icon="order" :title="i18.mine.statistics" @click="handleStatistic"></u-cell-item>
 			</u-cell-group>
 		</view>
 
@@ -199,6 +200,11 @@
 			handelOrder() {
 				this.$Router.push({
 					name: 'myOrder'
+				})
+			},
+			handleStatistic() {
+				this.$Router.push({
+					name: 'statistics'
 				})
 			},
 			handellink() {
