@@ -55,7 +55,6 @@ export default class Socket {
                 }
                 this.on_register[event].push(handler);
             }
-            console.log(this.on_register)
         }
     }
 
@@ -316,8 +315,6 @@ export default class Socket {
         else {
             delete this.on_register[event];
         }
-
-        console.log(this.on_register);
         return this.off;
     }
 

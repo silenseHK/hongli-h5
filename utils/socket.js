@@ -3,7 +3,7 @@ import baseUrl from './baseUrl';
 
 const socket = {
     socketInstance: null,
-    open(){
+    open() {
         const ping = uni.getStorageSync('ping');
         if (!ping) return;
         if (Object.prototype.toString.call(this.socketInstance) !== "[object Null]") return;
@@ -15,7 +15,13 @@ const socket = {
         this.socketInstance.on('error', ()=>{
             console.log('socket open err')
         })
-
+    },
+    close() {
+        if (Object.prototype.toString.call(this.socketInstance) !== "[object Null]") {
+            this.socketInstance.killApp();
+            this.socketInstance.close();
+            this.socketInstance = null;
+        }
     }
 };
 
