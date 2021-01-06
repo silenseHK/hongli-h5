@@ -9,6 +9,6 @@ const host = 'goshop6.in'
 const shareUrl = `https:/${host}/`;
 
 const phpUrl = `https://api.${host}/`;
-const wsUrl = `ws://api.${host}/ping?`;
+const wsUrl = `wss://api.${host}/ping?`;
 
 export default {shareUrl ,phpUrl, wsUrl}

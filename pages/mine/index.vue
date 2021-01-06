@@ -82,7 +82,7 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="map" :title="i18.mine.address" @click="handelMap"></u-cell-item>
-				<u-cell-item icon="kefu-ermai" :title="i18.mine.contact" @tap="handelservices"></u-cell-item>
+				<!--<u-cell-item icon="kefu-ermai" :title="i18.mine.contact" @tap="handelservices"></u-cell-item>-->
 				<u-cell-item icon="IE-circle-fill" :title="i18.mine.language" @click="handelLanguage"></u-cell-item>
 				<u-cell-item icon="close" :title="i18.mine.out" @click="handelClick"></u-cell-item>
 			</u-cell-group>
