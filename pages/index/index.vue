@@ -19,9 +19,7 @@
 				</view>
 			</view>
 		</view> -->
-		
 		<service></service>
-		
 		<view class="app-download">
 			<view class="u-flex">
 				<image src="../../static/app.png" mode="" class="app-img"></image>
@@ -93,7 +91,7 @@
 <script>
 	import uniNavBar from '../../components/uni-nav-bar/uni-nav-bar.vue'
 	import popup from "@/components/ge-popup.vue";
-	import service from '../../components/Service.vue';
+	import service from '@/components/Service.vue'
 	export default {
 		components: {
 			uniNavBar,

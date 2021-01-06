@@ -347,7 +347,7 @@
 	import formDate from "../../utils/getTimes.js";
 	import OrderGren from "../../components/order/OrderGren.vue";
 	import OrdeLists from "../../components/OrderLists.vue";
-	import service from '../../components/Service.vue';
+	import service from '@/components/Service.vue'
 	export default {
 		components: {
 			uniNavBar,

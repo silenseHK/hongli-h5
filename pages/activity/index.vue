@@ -52,7 +52,7 @@
 </template>
 
 <script>
-	import service from '../../components/Service.vue';
+	import service from '@/components/Service.vue'
 	export default {
 		components: {
 			service

@@ -98,6 +98,7 @@ export const requestCommission = (data)=>http.post('/withdrawal/agent/reward',da
 
 //获取用户信息
 export const requestInfo = (data)=>http.get('/user/info',data)
+export const requestCrips = (data)=>http.get('/crisp',data)
 //获取支付方式
 export const getrechargemethods = (data)=>http.post('/user/rechargemethods',data)
 

@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-show="isShow">
 		<!-- 顶部navbar--start -->
 		<view>
 			<view class="app-customer" @click="handelService" :class="isServer?'service-bg1':'service-bg'" v-show="isGroup">
@@ -28,6 +28,7 @@
 	export default {
 		data() {
 			return {
+				isShow: false,
 				isServer: false,
 				isGroup: true,
 				setting: [],
@@ -46,6 +47,9 @@
 				if(data.code === 200){
 					let setting = data.data;
 					this.setting = setting;
+					if(setting[2] == 1){
+						this.isShow = true;
+					}
 				}
 			},
 			

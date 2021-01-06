@@ -83,7 +83,7 @@
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="map" :title="i18.mine.address" @click="handelMap"></u-cell-item>
-				<!--<u-cell-item icon="kefu-ermai" :title="i18.mine.contact" @tap="handelservices"></u-cell-item>-->
+				<u-cell-item icon="kefu-ermai" :title="i18.mine.contact" @tap="handelservices"></u-cell-item>
 				<u-cell-item icon="IE-circle-fill" :title="i18.mine.language" @click="handelLanguage"></u-cell-item>
 				<u-cell-item icon="close" :title="i18.mine.out" @click="handelClick"></u-cell-item>
 			</u-cell-group>
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-	import service from '../../components/Service.vue';
+	import service from '../../components/Service.vue'
 	export default {
 		components: {
 			service
@@ -135,6 +135,9 @@
 			uni.setNavigationBarTitle({
 				title: this.i18.mine.mineNavabr
 			})
+			
+			this._getCrisp();
+			
 		},
 		onShow() {
 			const token = uni.getStorageSync('token')
@@ -168,6 +171,40 @@
 					this.id = data.id
 					this.phone = data.phone
 					this.nickName = data.nickname
+				}
+			},
+			
+			async _getCrisp(){
+				const {
+					data,
+					code
+				} = await this.$api.requestCrips();
+				if(code === 200){
+					if(data.status == 1){
+						window.$crisp=[];
+						window.CRISP_WEBSITE_ID=data.crisp_website_id;
+						let d=document;
+						let s=d.createElement("script");
+						s.src="https://client.crisp.chat/l.js";
+						s.async=1;
+						let timer1 = setInterval(function(){
+							(function(){
+								if(d.getElementsByTagName("head").length > 0){
+									clearInterval(timer1);
+									if(d.getElementsByClassName('cc-unoo').length == 0){
+										d.getElementsByTagName("head")[0].appendChild(s);
+										let timer = setInterval(function(){
+											let cc = d.getElementsByClassName('cc-unoo');
+											if(cc.length == 1){
+												cc[0].setAttribute("style", "bottom:200px !important;right:18px !important;");
+												clearInterval(timer)
+											}
+										},20)
+									}
+								}
+							})();
+						}, 20)
+					}
 				}
 			},
 

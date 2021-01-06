@@ -43,6 +43,10 @@ Vue.prototype.$util = {
 import uView from 'uview-ui'
 Vue.use(uView);
 
+// import service from './components/Service.vue';
+// let serviceVue = Vue.component('service', service)
+// document.body.appendChild(new serviceVue().$mount().$el)
+
 const app = new Vue({
 	...App,
 	router,
