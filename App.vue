@@ -5,8 +5,10 @@ export default {
 	const tokenStr = uni.getStorageSync('token')
 	if ( !tokenStr) {
 		// console.log('没有登录')
-	}
-  },
+	} else {
+        this.UniSocket.open();
+    }
+  }
  
 };
 </script>

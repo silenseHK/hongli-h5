@@ -271,6 +271,7 @@
 				if (result.code === 200) {
 
 					this.$util.msg('login successful');
+					this.UniSocket.open();
 					this.$Router.push({
 						path:'/pages/index/index'
 					})

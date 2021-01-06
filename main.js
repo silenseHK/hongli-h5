@@ -8,9 +8,11 @@ import {
 import store from './store'
 import './api'
 import formatDate from 'utils/utils.js'
+import {socket} from './utils/socket'
 Vue.filter('formatDate', formatDate)
 Vue.prototype.$store = store
 Vue.prototype.$ajax = $ajax
+Vue.prototype.UniSocket = socket
 Vue.config.productionTip = false
 
 App.mpType = 'app'
