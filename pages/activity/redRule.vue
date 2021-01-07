@@ -35,11 +35,9 @@
     }
 </script>
 
-<style lang="less">
-    .container {
-        padding: 20upx 30upx;
-        .rule {
-
-        }
+<style lang="scss" scoped>
+    .text-body {
+        color: black;
+        opacity: 0.6;
     }
 </style>
