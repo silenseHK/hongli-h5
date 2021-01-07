@@ -6,7 +6,7 @@
 					<text>{{i18.active.balance}}</text>
 					<text>₹ {{money}}</text>
 				</view>
-				<view class="reward-right">
+				<view class="reward-right" @click="ruleHandle">
 					<u-icon name="info-circle-fill" color="white" size="50" class="u-m-r-10"></u-icon>
 					<text>{{i18.active.rulesss}}</text>
 				</view>
@@ -133,6 +133,9 @@
 				if(data.code===200) {
 					this.$util.msg('Extracted successfully')
 				}
+			},
+			ruleHandle() {
+				this.$router.push('redRule');
 			}
 		},
 	};
