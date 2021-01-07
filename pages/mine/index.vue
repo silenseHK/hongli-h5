@@ -196,16 +196,14 @@
 										let timer = setInterval(function(){
 											let cc = d.getElementsByClassName('cc-unoo');
 											if(cc.length == 1){
-												cc[0].setAttribute("style", "bottom:200px !important;right:18px !important;");
-												// cc[0].onclick(function(){
-												// 	console.log(123)
-												// })
+												cc[0].setAttribute("style", "bottom:90px !important;right:18px !important;");
 												cc[0].addEventListener('click', function(){
-													cc[0].setAttribute("style", "bottom:200px !important;right:18px !important;");
+													cc[0].setAttribute("style", "bottom:90px !important;right:18px !important;");
 												})
 												clearInterval(timer)
 											}
-										},20)
+											// console.log('wait-css')
+										},10)
 									}
 								}
 							})();
