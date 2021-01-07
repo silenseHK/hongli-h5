@@ -120,7 +120,16 @@ export default {
 			cardRight: 'Numbers of Red-Enevlope',
 			inputHodel: 'Please enter the verification code',
 			putin: 'Put In',
-			recoderight: 'Records'
+			recoderight: 'Records',
+			//==========invite============
+			inviteRuleTitle: 'Rules of invite friends',
+			rule_1: 'Invite one of your friends and you will get 100 rupees after your friend recharges for the first time.',
+			rule_2: 'Invite your 2 friends and you will get 210 rupees after your friends recharge for the first time.',
+			rule_3: 'Invite your 5 friends and you will get 600 rupees after your friends recharge for the first time.',
+			rule_4: 'Invite your 10 friends, and after your friends recharge for the first time, you will get 1300 rupees.',
+			rule_5: 'Invite your 20 friends and you will get 2900 rupees after your friends recharge for the first time.',
+			rule_6: 'Note: after you receive the reward at any stage, your invitation number will be reset!',
+			//==========invite end============
 		},
 		shop: {
 			shopNavbar: ' Shopping Cart ',

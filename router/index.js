@@ -134,6 +134,9 @@ const router = new Router({
 			path: '/pages/activity/signRule',
 			name: 'signRule'
 		},{
+			path: '/pages/activity/redRule',
+			name: 'redRule'
+		},{
 			path: '/pages/language/language',
 			name: 'language'
 		},{
@@ -181,7 +184,7 @@ export const whiteList = [
 	"promotion", "detailSub", "friends", "rule", "recharge", "trend", "recordList",
 	"enjoyOrder", "historiDetail", "settings", "security", "modifyName", "modifyWord", "about", "privacy", "agreement",
 	"aboutinfo", "wallet", "bankCard", "address", "addSite", "activity", "withdrawal", "signIn", "envelope", "redEnv",
-	"myOrder", "records", "envelopes", "applyBalance","signRule","language","rechargeRecord","promotionList","application","invite","register"
+	"myOrder", "records", "envelopes", "applyBalance","signRule","language","rechargeRecord","promotionList","application","invite","register","redRule"
 ]
 
 //全局路由前置守卫

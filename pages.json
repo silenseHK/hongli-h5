@@ -263,7 +263,13 @@
 				"navigationBarBackgroundColor": "balck"
 			}
 
-		}, {
+		},{
+			"path": "pages/activity/redRule",
+			"style": {
+				"navigationBarTitleText": "rule",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		},{
 			"path": "pages/language/language",
 			"style": {
 				"navigationBarTitleText": "Language",
