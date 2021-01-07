@@ -25,6 +25,8 @@ export default class Socket {
         this.heartBeatMsg = option.heartBeatMsg || 'heartbeat'
         //当前重连次数
         this.cur_reconnection = 0;
+        //0 初始值 1 服务器错误尝试重连 2 客户端错误尝试重连
+        this.reconnection_status = 0;
         this.init();
 
     }
@@ -172,6 +174,10 @@ export default class Socket {
         this.isError = false;
         // 关闭重连状态
         this.begin_reconnection = false;
+        //重置重连状态
+        this.reconnection_status = 0;
+        this.cur_reconnection = 0;
+
         this._connectioned = true;
         if (this.on_register['connectioned'] !== undefined) {
             this.invokeHandlerFunctionOnRegistr('connectioned');
@@ -189,8 +195,9 @@ export default class Socket {
                 this.SocketTask.send({
                     data: this.heartBeatMsg,
                     fail: (e) => {
-                        // 消息发送失败时将消息缓存
-                        throw new Error('Failed to send message to server... ' + e);
+                        clearInterval(this._heart_rate_interval);
+                        this.cliErrReconnection();
+                        throw new Error('heartbeat fail');
                     }
                 });
             } else {
@@ -213,13 +220,31 @@ export default class Socket {
         // 处于与服务器断开状态并且不是被动断开
         this._connectioned = false;
         if (!this.closed) {
-            if (this.max_reconnection > this.cur_reconnection) return;
-            this.reconnection_time = setTimeout(() => {
+            if (this.reconnection_status === 1) {
+                if (this.max_reconnection > this.cur_reconnection) return;
                 this.cur_reconnection++;
+            }
+            this.reconnection_time = setTimeout(() => {
                 this.begin_reconnection = true;
                 this.connection();
             }, 2000);
         }
+    }
+
+    /**
+     * 服务端错误尝试重连
+     */
+    serErrRecnnection() {
+        this.reconnection_status = 1;
+        this.reconnection();
+    }
+
+    /**
+     * 客户端错误尝试重连
+     */
+    cliErrReconnection() {
+        this.reconnection_status = 2;
+        this.reconnection();
     }
 
     /**
@@ -259,7 +284,14 @@ export default class Socket {
             SocketTask.onClose(() => {
                 // 重新连接
                 if (!this.closed) {
-                    this.reconnection();
+                    this.serErrRecnnection();
+                }
+            });
+
+            SocketTask.onError(() => {
+                // 重新连接
+                if (!this.closed) {
+                    this.serErrRecnnection();
                 }
             });
             this.connectioned();
@@ -302,17 +334,15 @@ export default class Socket {
             return;
         }
         if (handler) {
-            let newHandlers = handlers.filter((handle)=>{
+            let newHandlers = handlers.filter((handle) => {
                 return handle.toString() != handler.toString()
             });
-            if (newHandlers.length === 0){
+            if (newHandlers.length === 0) {
                 delete this.on_register[event];
-            }
-            else if (newHandlers.length != handlers.length) {
+            } else if (newHandlers.length != handlers.length) {
                 this.on_register[event] = newHandlers;
             }
-        }
-        else {
+        } else {
             delete this.on_register[event];
         }
         return this.off;

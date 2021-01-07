@@ -13,7 +13,8 @@ const socket = {
             heartRate: 10000
         });
         this.socketInstance.on('error', ()=>{
-            console.log('socket open err')
+            //server错误开始尝试重连
+            this.socketInstance.reconnection();
         })
     },
     close() {
