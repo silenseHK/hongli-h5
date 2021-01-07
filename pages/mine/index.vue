@@ -200,6 +200,10 @@
 												cc[0].addEventListener('click', function(){
 													cc[0].setAttribute("style", "bottom:90px !important;right:18px !important;");
 												})
+												console.log(d.getElementsByClassName('cc-1bue')[0])
+												// d.getElementsByClassName('cc-1bue')[0].setAttribute("style", "bottom:140px !important;right:18px !important;");
+												d.getElementsByClassName('cc-1bue')[0].id = "cc-1bue2";
+												console.log(d.getElementsByClassName('cc-1bue')[0])
 												clearInterval(timer)
 											}
 											// console.log('wait-css')

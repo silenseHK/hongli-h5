@@ -56,6 +56,10 @@ export default {
 	page {
 		height: 100%;
 	}
+	#cc-1bue2{
+		bottom: 140px !important;
+		right:18px !important;
+	}
 @import "uview-ui/index.scss";
 /*每个页面公共css */
 </style>
