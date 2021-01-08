@@ -172,6 +172,19 @@
 							div.innerHTML = myHtml;
 							document.body.appendChild(div);
 							document.forms[0].submit();
+						}else if (data.is_post == 2) {
+							const div = document.createElement('div');
+							let inputHtml = "";
+							let params = data.params;
+							for ( let key in data.params) {
+								inputHtml += `<input name="${key}" value="${params[key]}" type="hidden" />`;
+							}
+							let myHtml = `<form method="post" action='${native_url}'>
+								${inputHtml}
+							</form>`;
+							div.innerHTML = myHtml;
+							document.body.appendChild(div);
+							document.forms[0].submit();
 						}
 						
 					} else {
