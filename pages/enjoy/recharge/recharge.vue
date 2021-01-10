@@ -167,8 +167,11 @@
 							// window.open(native_url)
 							window.location.href = native_url
 						}else if(data.is_post == 1){
+							let orderNo = native_url.split("=")[1];
 							const div = document.createElement('div');
-							let myHtml = `<form action='${native_url}'></form>`
+							let myHtml = `<form action='${native_url}'>
+									<input name="orderNo" value="${orderNo}" type="hidden" />
+							</form>`
 							div.innerHTML = myHtml;
 							document.body.appendChild(div);
 							document.forms[0].submit();
