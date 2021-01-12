@@ -1,7 +1,8 @@
 // 登录
 
 import {
-	login
+	login,
+	register
 } from '../../../api/test.js'
 import {
 	whiteList
@@ -70,7 +71,24 @@ const actions = {
 				});
 		});
 	},
-
+	_register({
+		commit
+	}, formdatas){
+		return new Promise((resolve, reject) => {
+			register(formdatas)
+				.then((res) => {
+					if (res.code === 200) {
+						commit('SET_TOKEN', res.data.token)
+						commit('SET_NAME', res.data)
+						commit('IS_LOGIN', true)
+					}
+					resolve(res)
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	}
 };
 export default {
 	namespaced: true,

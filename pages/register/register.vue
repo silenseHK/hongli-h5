@@ -182,21 +182,34 @@
 					this.$util.msg('The two passwords are inconsistent')
 					return false;
 				}
-				let {
-					data,
-					code
-				} = await this.$api.register({
+				
+				const data = {
 					phone: this.form.phone,
 					password: this.form.password,
 					sms_code: this.form.sms,
 					code: this.form.code
-				})
-				if (code === 200) {
+				}
+				const result = await this.$store.dispatch('users/_register', data)
+				
+				// let {
+				// 	data,
+				// 	code
+				// } = await this.$api.register({
+				// 	phone: this.form.phone,
+				// 	password: this.form.password,
+				// 	sms_code: this.form.sms,
+				// 	code: this.form.code
+				// })
+				if (result.code === 200) {
 					this.$util.msg('registration success')
+					this.UniSocket.open();
 					this.$Router.push({
-						name: 'login'
+						path:'/pages/index/index'
 					})
-
+					//添加缓存
+					// this.$Router.push({
+					// 	name: 'login'
+					// })
 				} else {
 					this.$util.msg('registration error')
 
