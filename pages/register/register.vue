@@ -214,7 +214,27 @@
 					this.$util.msg('registration error')
 
 				}
-			}
+			},
+			//注册成功，直接调用登录
+			async toLogin() {
+				const data = {
+					phone: this.form.phone,
+					password: this.form.password
+				};
+				const result = await this.$store.dispatch('users/_login', data)
+				if (result.code === 200) {
+					this.$util.msg('login successful');
+					this.UniSocket.open();
+					this.$Router.push({
+						name:'index'
+					})
+				} else {
+					//自动登录失败，去手动登录
+					this.$Router.push({
+						name: 'login'
+					})
+				}
+			},
 		},
 		computed: {
 			i18() {
