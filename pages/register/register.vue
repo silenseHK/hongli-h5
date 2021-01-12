@@ -192,6 +192,7 @@
 					code: this.form.code
 				})
 				if (code === 200) {
+
 					this.$util.msg('registration success')
 					this.$Router.push({
 						name: 'login'
