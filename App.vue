@@ -6,7 +6,9 @@ export default {
 	if ( !tokenStr) {
 		// console.log('没有登录')
 	} else {
-        this.UniSocket.open();
+	    if (process.env.NODE_ENV !== 'development') {
+            this.UniSocket.open();
+        }
     }
   }
  

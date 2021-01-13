@@ -104,3 +104,6 @@ export const getrechargemethods = (data)=>http.post('/user/rechargemethods',data
 
 //获取统计
 export const statistics = (data)=>http.get('/betting/statistics',data)
+
+//banner 获取
+export const banners = (data)=> http.get('/banner/find',data)

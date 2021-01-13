@@ -35,7 +35,7 @@
 		</view> -->
 		<!-- 轮播图 --start -->
 		<view class="wrap">
-			<u-swiper :list="list" height="400"></u-swiper>
+			<u-swiper @click="swiperClick" :list="list" height="400"></u-swiper>
 		</view>
 		<!-- 轮播图 --end -->
 
@@ -111,23 +111,7 @@
 				showLoginAlert: false,
 				showLogoutAlert: false,
 				isAlertLoginAlert: false,
-
-				list: [{
-						image: '../../static/home/banner01.jpg',
-						title: 'banner'
-					},
-					{
-						image: '../../static/home/banner02.jpg',
-						title: 'banner'
-					},
-					{
-						image: '../../static/home/banner03.jpg',
-						title: 'banner'
-					}, {
-						image: '../../static/home/banner04.jpg',
-						title: 'banner'
-					}
-				],
+				list: [],
 				listItem: [{
 						images: '../../static/home/bag-1.jpg',
 						title: 'Giordano Analog Rose Gold Dial Women',
@@ -228,6 +212,7 @@
 		},
 		onLoad(){
 			this.handelAlert();
+            this.banners();
 		},
 		methods: {
 			// change() {
@@ -241,7 +226,16 @@
 			// 		url: 'index'
 			// 	})
 			// },
-			
+			swiperClick(index){
+				let swiperItem = this.list[index];
+				if (swiperItem.type == 2) { //内链
+					this.$Router.push({
+						path: swiperItem.url
+					})
+				} else if (swiperItem.type == 3) { //外链
+					window.location.href = swiperItem.url
+				}
+			},
 			hideLogoutAlert(){
 				this.showLogoutAlert = false;
 				const token = uni.getStorageSync('token')
@@ -283,6 +277,48 @@
 					window.location.href = data.data.whats_group_url
 				}
 			},
+
+			async banners() {
+				let data = await this.$api.banners({params: {
+					location: 1, //1 表示首页banner
+				}});
+				if (data.code === 200) {
+					if (data.data.length) {
+						let list = [];
+						data.data.map((item) => {
+							list.push({
+								"id": item.id,
+								"url": item.url,
+								"type": item.type,
+								"image": item.uploads.path_url
+							});
+						});
+						this.list = list;
+					} else {
+						this.list = [{
+								image: '../../static/home/banner01.jpg',
+								title: 'banner',
+								type: 1,
+							},
+							{
+								image: '../../static/home/banner02.jpg',
+								title: 'banner',
+								type: 1,
+							},
+							{
+								image: '../../static/home/banner03.jpg',
+								title: 'banner',
+								type: 1,
+							}, {
+								image: '../../static/home/banner04.jpg',
+								title: 'banner',
+								type: 1,
+							}
+						];
+					}
+				}
+			},
+
 			handelService() {
 				this.isServer = !this.isServer;
 			},
