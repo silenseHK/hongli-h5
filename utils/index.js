@@ -106,6 +106,9 @@ http.interceptors.response.use((response) => { /* 对响应成功做点什么 �
 					})
 				},1200)
 				break;
+			default:
+				uni.hideLoading()
+				return response.data
 		}
 		return Promise.reject(response)
 	}

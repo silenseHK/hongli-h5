@@ -367,7 +367,10 @@
 
                     }
 
-                }
+                } else {
+					this.productSearch.hasMore = false;
+					this.productSearch.status = "nomore";
+				}
             }
 		}
 	}
