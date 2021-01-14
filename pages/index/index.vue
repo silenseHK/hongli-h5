@@ -183,8 +183,6 @@
             this.products();
 		},
         onReachBottom() {
-            console.log('onReachBottom');
-            console.log(this.productSearch.hasMore);
             if (!this.productSearch.hasMore) {
                 return;
             }
@@ -241,7 +239,6 @@
             async productDetail(product) {
                 const data = await this.$api.productDetail(product.product_id);
                 if (data.code === 200) {
-                    console.log(data);
                     return data.data;
                 }
                 return false;

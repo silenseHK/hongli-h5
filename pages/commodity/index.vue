@@ -45,12 +45,22 @@
 		data() {
 			return {
 				banner: [],
-				product: null,
-				value: 0
+				product: {},
+				value: 0,
+				list: [],
 			}
 		},
 		onLoad: function() {
-			this.product = this.$Route.query.product
+			let product = this.$Route.query.product
+			if (Object.prototype.toString.call(product) !== '[object Object]') {
+				this.$util.msg("Parameter error");
+				this.$Router.push({
+					name: 'index'
+				})
+				return;
+			} else {
+				this.product = product
+			}
 			this.initBanner();
 		},
 		methods: {
