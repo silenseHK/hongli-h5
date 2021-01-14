@@ -244,7 +244,7 @@
 			},
 			handelOrder() {
 				this.$Router.push({
-					name: 'myOrder'
+					name: 'mineOrder'
 				})
 			},
 			handleStatistic() {

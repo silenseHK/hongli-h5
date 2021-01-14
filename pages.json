@@ -233,6 +233,12 @@
 				"navigationBarTitleText": "Red-Envelope",
 				"navigationBarBackgroundColor": "balck"
 			}
+		}, {
+			"path": "pages/mine/mine-order",
+			"style": {
+				"navigationBarTitleText": "Order",
+				"navigationBarBackgroundColor": "balck"
+			}
 		}
 
 		, {

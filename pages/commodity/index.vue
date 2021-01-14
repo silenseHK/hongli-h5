@@ -2,14 +2,14 @@
 	<view>
 		<view class="top-bg-img">
 			<view class="container-row">
-				<u-image :src="commodityList.images" height="600rpx"></u-image>
-
+				<!--<u-image :src="product.cover_img.path" height="600rpx"></u-image>-->
+				<u-swiper :list="list"  height="600"></u-swiper>
 			</view>
 
 		</view>
 		<view class="u-flex-col u-p-l-20">
-			<text class="info-name-text"> Armitron Sport Women's 45/7034 Digital Chronograph Resin Strap Watch</text>
-			<text class="info-price-text">₹ {{commodityList.money}}</text>
+			<text class="info-name-text u-flex-2"> {{product.name}}</text>
+			<text class="info-price-text u-flex-1">₹ {{product.price}}</text>
 			<text class="info-name-text">Quantity:</text>
 			<u-number-box v-model="value"></u-number-box>
 
@@ -17,43 +17,22 @@
 		<view class="info-desc-box-title">
 			<text>Description</text>
 		</view>
-		<view class=" u-flex-col info-desc-detail-title-text">
-			<text class=""> Product specifications </text>
-			<text class="u-font-sm u-m-t-20"> Jewellery Information </text>
-		</view>
-		<!-- 列表区域 --start -->
-
-		<view class="u-p-l-30">
-			<u-row gutter="12">
-				<u-col span="6" class="info-desc-detail-list">
-					<template v-for="(item,index) in listLeft">
-						<view :key="index" class="left-text">
-							<text class="u-p-l-10">{{item.title}}</text>
-							<u-line color="info" />
-						</view>
-					</template>
-				</u-col>
-				<u-col span="6" class="info-right">
-					<template v-for="(item,index) in listRight">
-						<view :key="index" class="left-right">
-							<text class="u-p-l-10">{{item.title}}</text>
-						</view>
-					</template>
-				</u-col>
-			</u-row>
-
+		<view class="u-padding-left-10 u-padding-top-10 u-padding-bottom-90">
+			<u-parse :html="product.content"></u-parse>
 		</view>
 		<!-- 列表区域 --emd -->
 		<!-- 底部navbar--start -->
 		<view class="bottm-navbar">
 			<u-row gutter="12" class="bottom-icon">
 				<u-col span="6" class="bottom-icon-navbar" style="justify-content: space-around;">
-					<u-image src="../../static/home/Customer.png" shape="circle" width="50rpx" height="50rpx"></u-image>
-					<u-image src="../../static/home/shopping.png" shape="circle" width="50rpx" height="50rpx" @click="$Router.push({ name: 'index'})"></u-image>
-					<u-image src="../../static/home/Shopwindow.png" shape="circle" width="50rpx" height="50rpx" @click="$Router.push({ name: 'shopping'})" ></u-image>
+					<!--<u-image src="../../static/home/Customer.png" shape="circle" width="50rpx" height="50rpx"></u-image>-->
+					<u-image src="../../static/commodity/shopping.png" width="50rpx" height="50rpx" @click="$Router.push({ name: 'index'})"></u-image>
+					<u-image src="../../static/commodity/Shopwindow.png" width="50rpx" height="50rpx" @click="$Router.push({ name: 'shopping'})" ></u-image>
 				</u-col>
 				<u-col span="6">
-					<u-button size="medium"  shape="square" class="bottom-btn" >Sold Out</u-button>
+					<view class="u-flex u-row-right">
+						<u-button size="medium"  shape="square" hover-class="none" :class="product.buy_status == 1 ? 'bottom-btn' : 'bottom-btn-gray' " @click="goodsBuy" > Buy now </u-button>
+					</view>
 				</u-col>
 			</u-row>
 		</view>
@@ -65,59 +44,51 @@
 	export default {
 		data() {
 			return {
-				commodityList: null,
-				value: 0,
-				listLeft: [{
-					title: 'manufacturer',
-				}, {
-					title: 'Package dimensions',
-				}, {
-					title: 'model',
-				}, {
-					title: ' Dial shape',
-				}, {
-					title: ' Table mirror material',
-				}, {
-					title: '  Display method',
-				}, {
-					title: ' Buckle type',
-				}, {
-					title: '  Dial material',
-				}, {
-					title: '   Calendar type',
-				}, {
-					title: '   Power type',
-				}],
-				listRight: [{
-					title: 'Armitron Sport',
-				}, {
-					title: '4.06 x 3.9 x 2.91 cm',
-				}, {
-					title: '45/7034GLD',
-				}, {
-					title: ' Oval',
-				}, {
-					title: '  Resin',
-				}, {
-					title: ' Digital',
-				}, {
-					title: ' Tang Buckle',
-				}, {
-					title: '  Resin',
-				}, {
-					title: '  Day-Date-Month',
-				}, {
-					title: ' Quartz',
-				}]
+				banner: [],
+				product: null,
+				value: 0
 			}
 		},
 		onLoad: function() {
-			this.commodityList = this.$Route.query.commodityList
-			// console.log(this.commodityList)
-
+			this.product = this.$Route.query.product
+			this.initBanner();
 		},
 		methods: {
+			initBanner() {
+				let { banner } = this.product;
+				let list = [];
+				if (banner.length) {
+					banner.map((item) => {
+						list.push({
+							"id": item.image_id,
+							"image": item.path
+						});
+					});
+				} else {
+					list.push({
+						"id": 1,
+						"image": product.cover_img.path
+					});
+				}
+				this.list = list;
+			},
+			async goodsBuy() {
+				if (Number(this.product.buy_status) === 1) {
+					if (this.value == 0) {
+						this.$util.msg('Please set the purchase quantity')
+						return;
+					}
+					let result = await this.$api.productBuy(this.product.product_id, this.value);
+					if (result.code === 200) {
+						this.$Router.push({
+							name: 'mineOrder'
+						})
+					} else {
+						this.$util.msg(result.msg || "error");
+					}
+				}
 
+			},
 		}
 	}
 </script>
@@ -129,10 +100,8 @@
 		// box-sizing: 100% 100%;
 
 		.container-row {
-			margin: -20rpx 15rpx;
 			
 			height: 400rpx;
-			border-radius: 15rpx;
 			-webkit-box-shadow: 0 0.03rem 8rpx 0 rgba(0, 0, 0, .2);
 			box-shadow: 0 0 0 0 rgba(0, 0, 0, .5);
 			background-color: #fff;
@@ -196,9 +165,8 @@
 		margin-top: 30rpx;
 		margin-bottom: 200rpx;
 	}
-
 	.bottm-navbar {
-		background-color: black;
+		background-color: #000000;
 		height: 100rpx;
 		position: fixed;
 		bottom: 0;
@@ -213,8 +181,12 @@
 				justify-content: space-between;
 			}
 			.bottom-btn{
-				background: linear-gradient(#9b9b9b,#ccc);
+				color: #fff;
+				background: #f0a74c;
 				
+			}
+			.bottom-btn-gray {
+				background: linear-gradient(#9b9b9b,#ccc);
 			}
 		}
 	}

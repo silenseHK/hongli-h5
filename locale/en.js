@@ -49,7 +49,11 @@ export default {
 			toptext: "包网搭建加飞机：@pinboda88",
 			input: 'Please enter the search content',
 			inputText: 'search',
-			listTitle: 'Product list'
+			listTitle: 'Product list',
+			//product
+			loadMore: "Load more",
+			loading: "Trying to load",
+			noMore: "No more data",
 		},
 		active: {
 			waring: 'waring',
@@ -224,7 +228,12 @@ export default {
 			loginout: 'Are you sure to log out?',
 			users:'User',
 			userId:'ID',
-			mobile:'Mobile'
+			mobile:'Mobile',
+			//mine order
+			RebateCommission: "Rebate commission",
+			price: "Price",
+			Date: "Date",
+			mineOrder: "My Order"
 		},
 		wallet: {
 			walletNavbar: ' My Wallet ',

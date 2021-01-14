@@ -49,7 +49,11 @@ export default {
 			toptext: 'पैकेज नेटवर्क निर्माण और विमान: @ pinboda88',
 			input: 'कृपया खोज सामग्री दर्ज करें',
 			inputText: "खोज",
-			listTitle: 'उत्पाद सूची'
+			listTitle: 'उत्पाद सूची',
+			//product
+			loadMore: "और लोड करें",
+			loading: "लोड करने का प्रयास करें",
+			noMore: "और कोई डेटा नहीं",
 		},
 		active: {
 			waring: 'चेतावनी',
@@ -220,7 +224,12 @@ export default {
 			loginout: 'क्या आप लॉग आउट करना सुनिश्चित करते हैं?',
 			users:'उपयोगकर्ता',
 			userId:'आईडी',
-			mobile:'मोबाइल'
+			mobile:'मोबाइल',
+			//mine order
+			RebateCommission: "रिबेट कमीशन",
+			price: "लागत",
+			Date: "दिनांक",
+			mineOrder: "मेरा आदेश"
 		},
 		wallet: {
 			walletNavbar: 'माई वॉलेट ',

@@ -53,13 +53,14 @@
 			<view class="u-font-xl  u-border-bottom list-title ">{{i18n.home.listTitle}}</view>
 			<u-grid :col="2">
 				<u-grid-item v-for="(item, index) in listItem" :key="index" class="u-padding-x-26" @click="commodity(item)">
-					<image :src="item.images" class="list-items"></image>
-					<view class="grid-text u-font-xl list-item-2">{{item.title}}</view>
-					<view class="grid-text u-font-xl" style="color: #df974b;">₹{{item.money}}</view>
+					<image :src="item.cover_img.path" class="list-items"></image>
+					<view class="grid-text u-font-xl list-item-2">{{item.name}}</view>
+					<view class="grid-text u-font-xl" style="color: #df974b;">₹{{item.price}}</view>
 				</u-grid-item>
 			</u-grid>
 			<!-- 	<button type="primary" @tap="change">切换语言</button> -->
-		</view>
+            <u-loadmore color="#6e7074"  margin-top="10" icon-type="flower" :load-text="productSearch.loadText" :status="productSearch.status" />
+        </view>
 		<!-- 列表区域--end -->
 
 		<!-- 模态框 -->
@@ -73,7 +74,7 @@
 				<rich-text :nodes="alertContentLogin"></rich-text>
 			</view>
 		</u-modal>
-		
+
 		<!-- 公告弹窗-未登录 -->
 		<u-modal v-model="showLogoutAlert" :show-title="false" confirm-color="#a7866e" border-radius="22" :show-cancel-button="false"
 		 :show-confirm-button="false" :confirm-text="i18n.tabbar.group" :cancel-text="i18n.tabbar.chat" @confirm="handelHaidel"
@@ -100,6 +101,13 @@
 		},
 		data() {
 			return {
+			    productSearch: {
+			        page: 1,
+                    size: 10,
+                    hasMore: true,
+                    status: 'loadmore',
+                    loadText: {}
+                },
 				isGroup: false,
 				isServer: false,
 				value: '',
@@ -112,59 +120,7 @@
 				showLogoutAlert: false,
 				isAlertLoginAlert: false,
 				list: [],
-				listItem: [{
-						images: '../../static/home/bag-1.jpg',
-						title: 'Giordano Analog Rose Gold Dial Women',
-						money: ' 4,590'
-					}, {
-						images: '../../static/home/bag-2.jpg',
-						title: 'EDDY HAGER Analogue Mens Watch',
-						money: ' 2,599'
-					},
-					{
-						images: '../../static/home/bag-5.jpg',
-						title: '  Armitron Sport Womens 45/7034 Digital Chronograph Resin Strap Watch',
-						money: '  5,170'
-					}, {
-						images: '../../static/home/bag-7.jpg',
-						title: '   Casio Casio Mens Classic Quartz Watch Resin Strap Black',
-						money: ' 7,800'
-					}, {
-						images: '../../static/home/bag-8.jpg',
-						title: '   Casio Casio Mens Classic Quartz Watch Resin Strap Black',
-						money: ' 7,800'
-					}, {
-						images: '../../static/home/bag-9.jpg',
-						title: '   Casio Casio Mens Classic Quartz Watch Resin Strap Black',
-						money: ' 7,800'
-					}, {
-						images: '../../static/home/bag-10.jpg',
-						title: '   Casio Casio Mens Classic Quartz Watch Resin Strap Black',
-						money: ' 7,800'
-					}, {
-						images: '../../static/home/bag-11.jpg',
-						title: '   Casio Casio Mens Classic Quartz Watch Resin Strap Black',
-						money: ' 7,800'
-					}, {
-						images: '../../static/home/bag-11.jpg',
-						title: '   Casio Casio Mens Classic Quartz Watch Resin Strap Black',
-						money: ' 7,800'
-					},
-					{
-						images: '../../static/home/bag-3.jpg',
-						title: 'Jacques lemans 1-1777F Mens Chronograph Watch',
-						money: ' 39,500'
-					}, {
-						images: '../../static/home/bag-4.jpg',
-						title: ' Maui Kool Wooden Watch Hana Collection Womens Analog Wooden Watch',
-						money: ' 9,600'
-					},
-					{
-						images: '../../static/home/bag-6.jpg',
-						title: '  TIMEX Unisex Weekender 38mm Watch',
-						money: ' 8,650'
-					},
-				]
+				listItem: []
 			}
 		},
 		computed: {
@@ -190,13 +146,24 @@
 					index: 4,
 					text: t.tabbar.mine
 				})
+                //提示语
+                this.productSearch.loadText = {
+                    loadmore: t.home.loadMore,
+                    loading: t.home.loading,
+                    nomore: t.home.noMore
+                };
 				return t
 			}
 		},
+        watch: {
+		    "productSearch.page": function (page){
+                this.products();
+            }
+        },
 		onReady() {
 			// this.isModul = true;
 			const token = uni.getStorageSync('token')
-			
+
 		},
 		onShow() {
 			const token = uni.getStorageSync('token')
@@ -213,7 +180,17 @@
 		onLoad(){
 			this.handelAlert();
             this.banners();
+            this.products();
 		},
+        onReachBottom() {
+            console.log('onReachBottom');
+            console.log(this.productSearch.hasMore);
+            if (!this.productSearch.hasMore) {
+                return;
+            }
+            //加载更多数据
+            this.productSearch.page ++;
+        },
 		methods: {
 			// change() {
 			// 	const system_info = uni.getStorageSync('system_info')
@@ -247,17 +224,29 @@
 					return;
 				}
 			},
-			
-			commodity(item) {
-				// console.log(item)
-				this.$Router.push({
-					name: 'commodity',
-					params: {
-						commodityList: item
-					}
-				})
+
+            async commodity(item) {
+                let product = await this.productDetail(item);
+			    if (product !== false) {
+                    this.$Router.push({
+                        name: 'commodity',
+                        params: {
+                            product: product
+                        }
+                    })
+                }
 			},
-			
+
+            //加载详情
+            async productDetail(product) {
+                const data = await this.$api.productDetail(product.product_id);
+                if (data.code === 200) {
+                    console.log(data);
+                    return data.data;
+                }
+                return false;
+            },
+
 			async handelAlert() {
 				this.isModul = false;
 				const data = await this.$api.getAlert()
@@ -267,7 +256,7 @@
 					// [this.alertContentLogout, this.alertContentLogin] = ["<h1>你好</h1>", result.login_alert]
 				}
 			},
-			
+
 			async handelHaidel() {
 				this.isModul = false;
 				const data = await this.$api.getGroup()
@@ -295,7 +284,8 @@
 						});
 						this.list = list;
 					} else {
-						this.list = [{
+						this.list = [
+						    {
 								image: '../../static/home/banner01.jpg',
 								title: 'banner',
 								type: 1,
@@ -338,7 +328,7 @@
 					// })
 					// window.open(data.data.whats_service_url)
 					window.location.href = data.data.whats_service_url
-					
+
 				}
 			},
 			async handlehia() {
@@ -351,7 +341,34 @@
 					// window.open(data.data.whats_service_url)
 					window.location.href = data.data.whats_service_url
 				}
-			}
+			},
+            async products() {
+			    this.productSearch.status = 'loading';
+			    let options = {
+			        params: {
+			            page: this.productSearch.page,
+			            size: this.productSearch.size,
+                    }
+                };
+			    const res = await this.$api.products(options);
+			    //渲染商品数据
+                let {data, code} = res;
+                if (code === 200) {
+                    if (data.data && data.data.length) {
+                        this.listItem = this.listItem.concat(data.data)
+                        this.productSearch.status = 'loadmore';
+                    } else {
+                        this.productSearch.hasMore = false;
+                        this.productSearch.status = "nomore";
+                    }
+                    if (!data.next_page_url) {
+                        this.productSearch.hasMore = false;
+                        this.productSearch.status = "nomore";
+
+                    }
+
+                }
+            }
 		}
 	}
 </script>
@@ -433,7 +450,7 @@
 	.modal-text {
 		font-size: 18upx;
 	}
-	
+
 	.modal-top {
 		font-size: 18upx !important;
 		line-height:46upx !important;

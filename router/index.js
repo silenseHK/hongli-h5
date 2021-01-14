@@ -118,6 +118,9 @@ const router = new Router({
 			path: '/pages/mine/myOrder',
 			name: 'myOrder'
 		}, {
+			path: '/pages/mine/mine-order',
+			name: 'mineOrder'
+		}, {
 			path: '/pages/mine/statistics',
 			name: 'statistics',
 			requiredLogin: true,

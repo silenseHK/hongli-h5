@@ -107,3 +107,14 @@ export const statistics = (data)=>http.get('/betting/statistics',data)
 
 //banner 获取
 export const banners = (data)=> http.get('/banner/find',data)
+
+//商品获取
+export const products = (data)=> http.get('/goods',data)
+//商品详情
+export const productDetail = (product_id)=> http.get('/goods/detail',{params: {product_id}})
+
+//商品购买
+export const productBuy = (product_id, num)=> http.post('/goods/buy',{product_id, num})
+
+//订单列表
+export const productOrders = (data)=> http.get('/goods/orders',data)
