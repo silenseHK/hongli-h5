@@ -118,3 +118,6 @@ export const productBuy = (product_id, num)=> http.post('/goods/buy',{product_id
 
 //订单列表
 export const productOrders = (data)=> http.get('/goods/orders',data)
+
+//app下载地址获取
+export const downloadUrl = (data)=> http.get('/app',data)

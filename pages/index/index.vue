@@ -20,13 +20,13 @@
 			</view>
 		</view> -->
 		<service></service>
-		<view class="app-download">
+		<view class="app-download" v-if="appDownloadInfo.status != 0">
 			<view class="u-flex">
 				<image src="../../static/app.png" mode="" class="app-img"></image>
 				<text>{{i18n.home.top}}</text>
 			</view>
 			<view class="">
-				<u-button type="primary" size="mini" :ripple="true" style="background: #a88571;">{{i18n.home.topbtn}}</u-button>
+				<u-button type="primary" @click="downloadApp" size="mini" :ripple="true" style="background: #a88571;">{{i18n.home.topbtn}}</u-button>
 			</view>
 		</view>
 		<!-- <view class="u-text-center app-text">
@@ -120,7 +120,11 @@
 				showLogoutAlert: false,
 				isAlertLoginAlert: false,
 				list: [],
-				listItem: []
+				listItem: [],
+				appDownloadInfo: {
+			    	status: 0,
+					link: ""
+				}
 			}
 		},
 		computed: {
@@ -162,7 +166,8 @@
         },
 		onReady() {
 			// this.isModul = true;
-			const token = uni.getStorageSync('token')
+			const token = uni.getStorageSync('token');
+			this.downloadUrl();
 
 		},
 		onShow() {
@@ -368,7 +373,17 @@
 					this.productSearch.hasMore = false;
 					this.productSearch.status = "nomore";
 				}
-            }
+            },
+			async downloadUrl() {
+				const data = await this.$api.downloadUrl()
+				if (data.code === 200) {
+					this.appDownloadInfo = data.data;
+				}
+			},
+			//下载app
+			downloadApp() {
+				this.appDownloadInfo.link && (window.location.href = this.appDownloadInfo.link);
+			}
 		}
 	}
 </script>
