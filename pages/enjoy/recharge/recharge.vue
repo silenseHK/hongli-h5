@@ -40,9 +40,9 @@
 				<view class="">
 					<text class="my-title">{{i18.enjoy.methods}}</text>
 				</view>
-				<view class="u-flex u-m-t-20 u-row-between">
+				<view class="u-flex u-m-t-20 methods-cont">
 					<block v-for="(item,index) in rechargLists" :key="index">
-						<view class="method-box" :class="[quickIndex==index?'active-pick':'']" @click="handelPick(item.company,index)">
+						<view class="method-box u-m-b-10" :class="[quickIndex==index?'active-pick':'']" @click="handelPick(item.company,index)">
 							<text class="method-text">{{item.company}}</text>
 						</view>
 					</block>
@@ -259,6 +259,10 @@
 			color: black;
 		}
 	}
+	.methods-cont {
+		flex-wrap: wrap;
+	}
+
 	.method-box {
 		background-image: linear-gradient(-81deg, #9d9d9d, #3b3b3b);
 		// background: black;
@@ -266,15 +270,18 @@
 		text-align: center;
 		padding: 20prx 30rpx;
 		height: 80rpx;
-		width: 150upx;
+		width: 24%;
+		/*min-width: 150upx;*/
 		font-weight: bold;
 		line-height: 80rpx;
 		font-size: 30rpx;
-
 		.method-text {
 			padding: 0 22rpx;
 			color: white;
 		}
+	}
+	.method-box:not(:nth-child(4n)) {
+		margin-right: calc(4% / 3);
 	}
 
 	.active-pick {

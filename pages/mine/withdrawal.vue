@@ -40,9 +40,9 @@
 			<view class="">
 				<text class="my-title">{{i18.enjoy.getMoneyType}}</text>
 			</view>
-			<view class="u-flex u-m-t-20 u-row-between">
+			<view class="u-flex u-m-t-20 methods-cont">
 				<block v-for="(item,index) in getMoneyLists" :key="index">
-					<view class="method-box" :class="[currentSelected==index ? 'active-pick' : '']" @click='clickGetMoney(index)'>
+					<view class="method-box u-m-b-10" :class="[currentSelected==index ? 'active-pick' : '']" @click='clickGetMoney(index)'>
 						<text class="method-text">{{item.type}}</text>
 					</view>
 				</block>
@@ -323,6 +323,9 @@
 		padding-left: 24rpx;
 		padding-right: 24rpx;
 	}
+	.methods-cont {
+		flex-wrap: wrap;
+	}
 	.method-box {
 		background-image: linear-gradient(-81deg, #9d9d9d, #3b3b3b);
 		// background: black;
@@ -330,16 +333,21 @@
 		text-align: center;
 		padding: 20prx 30rpx;
 		height: 80rpx;
-		width: 150upx;
+		width: 24%;
+		/*min-width: 150upx;*/
 		font-weight: bold;
 		line-height: 80rpx;
 		font-size: 30rpx;
-	
 		.method-text {
 			padding: 0 22rpx;
 			color: white;
 		}
 	}
+
+	.method-box:not(:nth-child(4n)) {
+		margin-right: calc(4% / 3);
+	}
+
 	.active-pick {
 		background: #e2bf88;
 		color: black;

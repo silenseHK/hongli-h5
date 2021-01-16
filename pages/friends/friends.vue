@@ -29,7 +29,7 @@
 
 	DrawPoster.useCtx(drawQrCode);
 	import h5Copy from '../../components/junyi-h5-copy/junyi-h5-copy.js'
-	import baseUrl from '../../utils/baseUrl.js'
+	// import baseUrl from '../../utils/baseUrl.js'
 	export default {
 
 		data() {
@@ -54,9 +54,11 @@
 			}
 		},
 		onLoad() {
+			let { protocol, host } = window.location
+			let shareUrl = protocol + "//" + host
 			const codes = uni.getStorageSync('code')
 			this.codes = codes
-			this.code = `${baseUrl.shareUrl}?code=${codes}#/pages/register/register`
+			this.code = `${shareUrl}?code=${codes}#/pages/register/register`
 			// this.code = `http://999666.in/?code=${codes}#/pages/register/register`
 			// console.log(this.code)
 		},
