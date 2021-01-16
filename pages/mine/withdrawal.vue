@@ -339,7 +339,6 @@
 		line-height: 80rpx;
 		font-size: 30rpx;
 		.method-text {
-			padding: 0 22rpx;
 			color: white;
 		}
 	}
