@@ -143,7 +143,7 @@
 
 				</view>
 			</block>
-			<u-loadmore :status="status" :load-text="loadText" />
+			<u-loadmore :status="loadStatus" :load-text="loadText" />
 		</view>
 	</view>
 </template>
@@ -176,8 +176,12 @@
 			}
 		},
 		onReady() {
+			// uni.setNavigationBarTitle({
+			// 	title: this.i18.enjoy.goldNavbar2
+			// })
 			uni.setNavigationBarTitle({
-				title: this.i18.enjoy.goldNavbar2
+				// title: this.i18.enjoy.golidNavbar
+				title: this.$Route.query.titleName + 'Record'
 			})
 		},
 		onReachBottom() { //上拉触底函数
@@ -200,7 +204,8 @@
 			async requestGames() {
 				const params = {
 					limit: this.pagesize,
-					page: this.page
+					page: this.page,
+					game_id: this.$Route.query.gameId
 				}
 				const {
 					data,

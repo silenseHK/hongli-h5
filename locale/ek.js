@@ -32,6 +32,7 @@ export default {
 			myMonthly: 'मासिक आय',
 			myPayback: 'ऋण वापसी की अवधि',
 			mySignIn: 'पैकेज में साइन इन करें',
+			mySignDay: 'दिन'
 		},
 		myDate: {
 			'星期一': 'सोमवार',

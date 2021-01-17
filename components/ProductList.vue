@@ -5,9 +5,9 @@
 			<text class="product-box-title-text" @click="ruleDetails">{{i18.active.rules}} ></text>
 		</view>
 		<view class="product-box-body">
-			<block v-for="(item) in signList">
+			<block v-for="(item,k) in signList">
 				<view class="product-box-body-item" :key="item.id">
-					<image class="product-box-body-img" src="../static/activity/sign_product_1.40a3bccc.png" mode=""></image>
+					<image class="product-box-body-img" :src="require(`../static/activity/v${k+1}.png`)" mode=""></image>
 					<!-- <text>{{item.name}}</text> -->
 					<view class="product-box-body-text">
 						<view class="product-box-body-text-left">
@@ -149,7 +149,7 @@
 					this.$util.msg('Successful purchase')
 					this.updates()
 				} else {
-						this.$util.msg('Eror purchase')
+					this.$util.msg(data.msg)
 				}
 				// console.log(data.data)
 

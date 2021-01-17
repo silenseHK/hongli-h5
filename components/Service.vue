@@ -9,16 +9,20 @@
 				</view>
 			</view>
 			<view class="" v-if="isServer">
-				<view class="app-grouap  u-flex-col u-row-center u-p-t-10" @tap="handleClick(0)">
-					<image v-if="setting[0].icon == 'whats_app'" src="../static/service/whats_app.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
-					<image v-else src="../static/service/group.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
-					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">{{setting[0].title}}</text>
+				<view v-for="(item, k) in setting" v-if="k < 2" :key="k" :class="{'app-grouap':k==0?true:false, 'app-whates':k==1?true:false, 'u-flex-col':true,'u-row-center':true, 'u-p-t-10':true}" @tap="handleClick(0)">
+					<image :src="require(`../static/service/${item.icon}.png`)" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
+					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">{{item.title}}</text>
 				</view>
-				<view class="app-whates  u-flex-col u-row-center u-p-t-10" @tap="handleClick(1)">
-					<image v-if="setting[1].icon == 'whats_app'" src="../static/service/whats_app.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
+				<!-- <view class="app-whates  u-flex-col u-row-center u-p-t-10" @tap="handleClick(1)">
+					<image v-if="setting[1].icon == 'whats_app'" :src="require(`../static/service/${setting[1].icon}.png`)" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
 					<image v-else src="../static/service/group.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
 					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">{{setting[1].title}}</text>
 				</view>
+				<view class="app-whates  u-flex-col u-row-center u-p-t-10" @tap="handleClick(1)">
+					<image v-if="setting[1].icon == 'telegram'" :src="require(`../static/service/${setting[1].icon}.png`)" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
+					<image v-else src="../static/service/group.png" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
+					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">{{setting[1].title}}</text>
+				</view> -->
 			</view>
 		</view>
 	</view>

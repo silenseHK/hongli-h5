@@ -35,7 +35,7 @@
 						<u-input v-model="form.sms" :placeholder="i18.login.vlidata" />
 
 						<u-toast ref="uToast"></u-toast>
-						<u-verification-code :seconds="seconds" start-text="top" :change-text="`${sendCode}sReacquire`" end-text="Reacquire"
+						<u-verification-code :seconds="seconds" start-text="OTP" :change-text="`${sendCode}sReacquire`" end-text="Reacquire"
 						 @end="end" @start="start" ref="uCode" @change="codeChange"></u-verification-code>
 						<u-button @tap="getCode" size="mini">{{tips}}</u-button>
 
@@ -211,7 +211,7 @@
 					// 	name: 'login'
 					// })
 				} else {
-					this.$util.msg('registration error')
+					this.$util.msg(result.msg)
 
 				}
 			},

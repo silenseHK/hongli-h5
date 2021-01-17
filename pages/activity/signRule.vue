@@ -6,7 +6,7 @@
 		<view class="rule-main">
 			<view class="rule-main-header">
 				<!-- <text class="rule-main-header-text">Q1：How much can i earn？</text> -->
-				<text class="rule-main-header-text">Q1：{{i18.signRulePage.Q1}}</text>
+				<text class="rule-main-header-text">Question：{{i18.signRulePage.Q1}}</text>
 				<!-- <text class="u-font-25 u-m-t-15 u-m-b-15 u-p-l-20">The monthly income of VIP 6 is 146 times that of VIP 1!</text> -->
 				<text class="u-font-25 u-m-t-15 u-m-b-15 u-p-l-20">{{i18.signRulePage.monthly}}</text>
 				<u-table color="#a88571">
@@ -24,61 +24,61 @@
 					</u-tr>
 					<u-tr>
 						<!-- <u-td style="color: #000000;">Sign in package 1</u-td> -->
-						<u-td style="color: #000000;">{{i18.signRulePage.mySignIn}} 1</u-td>
+						<u-td style="color: #000000;height: 96upx;">{{i18.signRulePage.mySignIn}} 1</u-td>
 						<u-td style="height: 96upx;">500</u-td>
 						<u-td style="height: 96upx;">18</u-td>
 						<u-td style="height: 96upx;">540</u-td>
-						<u-td style="height: 96upx;">30</u-td>
+						<u-td style="height: 96upx;">30 {{i18.signRulePage.mySignDay}}</u-td>
 
 
 					</u-tr>
 					<u-tr>
 						<!-- <u-td style="color: #000000;">Sign in package 2</u-td> -->
-						<u-td style="color: #000000;">{{i18.signRulePage.mySignIn}} 2</u-td>
+						<u-td style="color: #000000;height: 96upx;">{{i18.signRulePage.mySignIn}} 2</u-td>
 						<u-td style="height: 96upx;">1000</u-td>
 						<u-td style="height: 96upx;">40</u-td>
 						<u-td style="height: 96upx;">1200</u-td>
-						<u-td style="height: 96upx;">30</u-td>
+						<u-td style="height: 96upx;">30 {{i18.signRulePage.mySignDay}}</u-td>
 
 
 					</u-tr>
 					<u-tr>
 						<!-- <u-td style="color: #000000;">Sign in package 3</u-td> -->
-						<u-td style="color: #000000;">{{i18.signRulePage.mySignIn}} 3</u-td>
+						<u-td style="color: #000000;height: 96upx;">{{i18.signRulePage.mySignIn}} 3</u-td>
 						<u-td style="height: 96upx;">2500</u-td>
 						<u-td style="height: 96upx;">100</u-td>
 						<u-td style="height: 96upx;">3000</u-td>
-						<u-td style="height: 96upx;">30</u-td>
+						<u-td style="height: 96upx;">30 {{i18.signRulePage.mySignDay}}</u-td>
 
 
 					</u-tr>
 					<u-tr>
 						<!-- <u-td style="color: #000000;">Sign in package 4</u-td> -->
-						<u-td style="color: #000000;">{{i18.signRulePage.mySignIn}} 4</u-td>
+						<u-td style="color: #000000;height: 96upx;">{{i18.signRulePage.mySignIn}} 4</u-td>
 						<u-td style="height: 96upx;">6000</u-td>
 						<u-td style="height: 96upx;">230</u-td>
 						<u-td style="height: 96upx;">6900</u-td>
-						<u-td style="height: 96upx;">30</u-td>
+						<u-td style="height: 96upx;">30 {{i18.signRulePage.mySignDay}}</u-td>
 
 
 					</u-tr>
 					<u-tr>
 						<!-- <u-td style="color: #000000;">Sign in package 5</u-td> -->
-						<u-td style="color: #000000;">{{i18.signRulePage.mySignIn}} 5</u-td>
+						<u-td style="color: #000000;height: 96upx;">{{i18.signRulePage.mySignIn}} 5</u-td>
 						<u-td style="height: 96upx;">15000</u-td>
 						<u-td style="height: 96upx;">540</u-td>
 						<u-td style="height: 96upx;">16200</u-td>
-						<u-td style="height: 96upx;">30</u-td>
+						<u-td style="height: 96upx;">30 {{i18.signRulePage.mySignDay}}</u-td>
 
 
 					</u-tr>
 					<u-tr>
 						<!-- <u-td style="color: #000000;">Sign in package 6</u-td> -->
-						<u-td style="color: #000000;">{{i18.signRulePage.mySignIn}} 6</u-td>
+						<u-td style="color: #000000;height: 96upx;">{{i18.signRulePage.mySignIn}} 6</u-td>
 						<u-td style="height: 96upx;">45000</u-td>
 						<u-td style="height: 96upx;">1560</u-td>
 						<u-td style="height: 96upx;">46800</u-td>
-						<u-td style="height: 96upx;">30</u-td>
+						<u-td style="height: 96upx;">30 {{i18.signRulePage.mySignDay}}</u-td>
 
 
 					</u-tr>

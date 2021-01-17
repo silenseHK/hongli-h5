@@ -369,7 +369,7 @@
 				"pagePath": "pages/mine/index",
 				"iconPath": "static/mine.png",
 				"selectedIconPath": "static/mine-active.png",
-				"text": "Mine"
+				"text": "My Account"
 			}
 		]
 	}

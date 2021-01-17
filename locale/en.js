@@ -7,7 +7,7 @@ export default {
 			active: "Activity",
 			shop: 'Shopping',
 			enjoy: 'Enjoy',
-			mine: 'Mine',
+			mine: 'My Account',
 			chat: 'Chat',
 			group: 'Group',
 			service: 'Service',
@@ -26,12 +26,13 @@ export default {
 		signRulePage: {
 			Q1: 'How much can i earn？',
 			monthly: 'The monthly income of VIP 6 is 146 times that of VIP 1!',
-			signInName: 'Sign in package name',
-			myProduct: 'Product amount',
-			myDaily: 'Daily rebate amount',
-			myMonthly: 'monthly income',
-			myPayback: 'Payback period',
-			mySignIn: 'Sign in package'
+			signInName: 'VIP Level',
+			myProduct: 'Fee',
+			myDaily: 'Daily reward',
+			myMonthly: 'Total Rewards',
+			myPayback: 'Reward Duration',
+			mySignIn: 'VIP',
+			mySignDay: 'days'
 		},
 		myDate: {
 			'星期一': 'Monday',
@@ -103,7 +104,7 @@ export default {
 			totalValue2: 'Total value',
 			products1: 'Products',
 			rules: 'Rule >',
-			income: 'Daily income',
+			income: 'Daily Reward',
 			price: 'Price: ',
 			buy: 'Buy',
 			receive: 'Receive',
@@ -137,7 +138,7 @@ export default {
 		},
 		shop: {
 			shopNavbar: ' Shopping Cart ',
-			content: 'YOUR SHOPPING CART IS TEMPORARILY OUT OF STOCK',
+			content: 'Shopping cart is empty',
 			gobuy: 'Go Buy'
 		},
 		enjoy: {

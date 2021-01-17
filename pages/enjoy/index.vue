@@ -885,6 +885,7 @@
 						break;
 					case 3:
 						titleName = this.navBarList[3].name
+						break;
 				}
 				this.$Router.push({
 					path: "/pages/enjoy/recordList/recordList",
@@ -895,8 +896,27 @@
 				});
 			},
 			orderDetail() {
+				let titleName = null
+				switch(Number(this.current)){
+					case 4:
+						titleName = this.navBarList[0].name
+						break;
+					case 1:
+						titleName = this.navBarList[1].name
+						break;
+					case 2:
+						titleName = this.navBarList[2].name
+						break;
+					case 3:
+						titleName = this.navBarList[3].name
+						break;
+				}
 				this.$Router.push({
-					name: "enjoyOrder",
+					path: "/pages/enjoy/enjoyOrder/enjoyOrder",
+					query: {
+						gameId: this.current,
+						titleName
+					},
 				});
 			},
 			// 订单

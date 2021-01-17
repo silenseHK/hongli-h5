@@ -52,7 +52,9 @@
 		<!-- <u-loadmore :status="status" /> -->
 		<view v-show="isLoadMore">
 			<!-- <uni-load-more :status="loadStatus"></uni-load-more> -->
-			<u-loadmore :status="loadStatus" :icon-type="iconType" />
+			<u-loadmore :status="loadStatus" :icon-type="iconType" :load-text="{loadmore: 'load more',
+						loading: 'loading',
+						nomore: 'no more'}" />
 		</view>
 	</view>
 </template>
