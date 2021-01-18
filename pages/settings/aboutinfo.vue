@@ -23,11 +23,11 @@
 		</view>
 
 		<view class="u-flex-col">
-			
+
 				<text class="text-option u-m-t-30"> After-sales Service E-mail: </text>
 				<text class="text-option u-m-t-30"> After-sales Service Hours: 10am-17pm from Monday to Friday. </text>
 				<text class="text-option u-m-t-30"> If you can’t get our reply, please wait patiently. </text>
-			
+
 		</view>
 	</view>
 

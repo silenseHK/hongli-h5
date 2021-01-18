@@ -45,9 +45,10 @@
 			
 		},
 		methods: {
-			handelStings(item){
+			handelStings(options){
 				this.$Router.push({
-					name:item
+					name: "privacy",
+					params: {type: options.type, titleItem: this.titleList[options.type - 1]}
 				})
 			}
 		}

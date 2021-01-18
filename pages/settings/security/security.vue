@@ -43,7 +43,7 @@
 		methods: {
 			handelStings(item){
 				this.$Router.push({
-					name:item
+					name:item.name
 				})
 			}
 		}

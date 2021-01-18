@@ -26,11 +26,12 @@
 						title: 'About Us',
 						icon: 'info',
 						link: 'about'
-					}, {
-						title: 'Complaints&Suggestions',
-						icon: 'info-circle',
-						link: 'sdffs'
-					}
+					},
+					// {
+					// 	title: 'Complaints&Suggestions',
+					// 	icon: 'info-circle',
+					// 	link: 'sdffs'
+					// }
 				]
 			}
 		},
@@ -46,13 +47,13 @@
 			})
 			this.titleList[0].title = this.i18.setting.account
 			this.titleList[1].title = this.i18.setting.about
-			this.titleList[2].title = this.i18.setting.compli
-			
+			// this.titleList[2].title = this.i18.setting.compli
+
 		},
 		methods: {
 			handelSting(item) {
 				this.$Router.push({
-					name:item
+					name:item.name
 				})
 			}
 		}

@@ -167,11 +167,17 @@
 							// window.open(native_url)
 							window.location.href = native_url
 						}else if(data.is_post == 1){
-							let orderNo = native_url.split("=")[1];
+							//https://gateway.shineupay.com/?id=xxx
+							let fieldName = "id", fieldValue="";
+							let conf = native_url.substr(native_url.indexOf('?') + 1).split("=")
+							if (conf){
+								fieldName = conf[0];
+								fieldValue = conf[1];
+							}
 							const div = document.createElement('div');
 							let myHtml = `<form action='${native_url}'>
-									<input name="orderNo" value="${orderNo}" type="hidden" />
-							</form>`
+									<input name="${fieldName}" value="${fieldValue}" type="hidden" />
+							</form>`;
 							div.innerHTML = myHtml;
 							document.body.appendChild(div);
 							document.forms[0].submit();

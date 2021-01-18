@@ -121,3 +121,6 @@ export const productOrders = (data)=> http.get('/goods/orders',data)
 
 //app下载地址获取
 export const downloadUrl = (data)=> http.get('/app',data)
+
+//about us
+export const aboutUs = (type)=> http.get('/system/aboutUs/'+ type)

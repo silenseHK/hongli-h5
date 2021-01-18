@@ -83,14 +83,17 @@ const router = new Router({
 			name: 'about'
 		}, {
 			path: '/pages/settings/privacy',
-			name: 'privacy'
-		}, {
-			path: '/pages/settings/agreement',
-			name: 'agreement'
-		}, {
-			path: '/pages/settings/aboutinfo',
-			name: 'aboutinfo'
-		}, {
+			name: 'privacy',
+		},
+		// {
+		// 	path: '/pages/settings/agreement',
+		// 	name: 'agreement'
+		// },
+		// {
+		// 	path: '/pages/settings/aboutinfo',
+		// 	name: 'aboutinfo'
+		// },
+		{
 			path: '/pages/mine/wallet',
 			name: 'wallet'
 		}, {

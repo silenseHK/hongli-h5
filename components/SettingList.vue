@@ -3,7 +3,7 @@
 		<view class="setting">
 			<u-cell-group>
 				<block v-for="(item,index) in titleList">
-					<u-cell-item :icon="item.icon" :title="item.title" class="setting-item" @click="settingLink(item.link)"></u-cell-item>
+					<u-cell-item :icon="item.icon" :title="item.title" class="setting-item" @click="settingLink(item.link, index + 1)"></u-cell-item>
 					<u-line color="#cbcbcb" />
 				</block>
 
@@ -32,9 +32,9 @@
 			};
 		},
 		methods: {
-			settingLink(item) {
+			settingLink(item, type) {
 
-				this.$emit('settings', item)
+				this.$emit('settings', {name: item, type})
 			}
 		}
 	}

@@ -691,14 +691,14 @@
 					name: "I agree thePresale management rule",
 				}, ],
 				navBarList: [{
-						name: "  Other  ",
+						name: "  Classic  ",
 						game_id: 4
 					}, {
-						name: " Gold ",
+						name: " Platinum ",
 						game_id: 1
 					},
 					{
-						name: " Jewelry ",
+						name: " Gold ",
 						game_id: 3
 					},
 					{
