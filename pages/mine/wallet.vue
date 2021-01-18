@@ -4,7 +4,7 @@
 			<view class="wallet-item">
 				<image src="../../static/setting/my_wallet.png" mode="" class="wallet-img"></image>
 				<view class="wallet-avater u-flex">
-					<u-avatar :src="src"></u-avatar>
+					<u-avatar src="../../static/mine/hpic2119_s.jpg"></u-avatar>
 					<view class="u-flex-col u-m-l-30">
 						<text class="u-font-30">{{i18.wallet.myBalance}}</text>
 						<text class="u-font-35 ">₹ 
