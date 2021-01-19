@@ -83,7 +83,7 @@
 			bold 
 			class="u-m-t-20 tab-switch" 
 			button-color="#cfa65f" 
-			@change="submenu" 
+			@change="submenu"
 			bg-color="white"
 			inactive-color="#cfa65f" 
 			:list="navBarList" 
@@ -181,7 +181,7 @@
 				<view class="u-font-18" style="font-weight: bold">{{
           i18.enjoy.record
         }}</view>
-				<view @click="handelrecordList">
+				<view @click="viewMore" data-path="/pages/enjoy/recordList/recordList">
 					<text>{{ i18.enjoy.more }} ></text>
 				</view>
 			</view>
@@ -203,7 +203,7 @@
 			</view>
 			<view class="u-flex u-row-between u-m-t-20 Record">
 				<view class="u-font-18" style="font-weight: bold">{{ i18.enjoy.order }}</view>
-				<view @click="orderDetail">
+				<view @click="viewMore" data-path="/pages/enjoy/enjoyOrder/enjoyOrder">
 					<text>{{ i18.enjoy.more }} ></text>
 				</view>
 			</view>
@@ -613,30 +613,26 @@
 					end_time: "",
 					start_time: "",
 				},
+				/**
+				 * current 等于 game_id
+				 * */
 				current: null,
 				numMony: "",
 			};
+		},
+		watch: {
+			subsectionCurrent(val) {
+				this.current = this.navBarList[val].game_id;
+			},
+			current(val) {
+				this.getGames(val);
+			}
 		},
 		onLoad() {
 			const innerAudioContext = uni.createInnerAudioContext()
 			innerAudioContext.src = '../../static/bet_select.mp3'
 			this.innerAudioContext = innerAudioContext
-			this.subsectionCurrent = uni.getStorageSync('subsectionCurrent') || 0
-			switch(this.subsectionCurrent.toString()){
-				case '0':
-					this.current = 4
-					break;
-				case '1':
-					this.current = 1
-					break;
-				case '2':
-					this.current = 3
-					break;
-				case '3':
-					this.current = 2
-					break
-			}
-			this.getGames(this.current);
+			this.subsectionCurrent = uni.getStorageSync('subsectionCurrent') || 0;
 			this.numMony = uni.getStorageSync("money");
 		},
 		// activated() {
@@ -666,13 +662,15 @@
 				this.innerAudioContext.play()
 				// this.innerAudioContext.pause()
 			},
+			getCurrentGame() {
+				return this.navBarList.filter( game_conf => this.current == game_conf.game_id)
+			},
 			handeloshow(index) {
 				this.showOrder = index;
 			},
 
 			//获取获取彩票游戏当前期数信息
 			async getGames(index) {
-				// console.log(index)
 				const data = await this.$api.getGame({
 					id: index,
 				});
@@ -708,27 +706,10 @@
 				}
 			},
 			submenu(index) {
-				this.myVideo()
+				this.myVideo();
 				this.subsectionCurrent = index
 				uni.setStorageSync('subsectionCurrent',index)
 				this.lastterm = ''
-				if (index == 0) {
-					this.current = 4
-					this.getGames(4);
-				} else if (index == 1) {
-					this.current = 1
-					this.getGames(1)
-				} else if (index == 2) {
-					// this.current = 2
-					// this.getGames(2)
-					this.current = 3
-					this.getGames(3)
-				} else if (index == 3) {
-					// this.current = 3
-					// this.getGames(3)
-					this.current = 2
-					this.getGames(2)
-				}
 			},
 			handelRule() {
 				this.$Router.push({
@@ -746,48 +727,14 @@
 			// 	})
 			// },
 			// 跳转详情页面
-			handelrecordList() {
-				let titleName = null
-				switch(Number(this.current)){
-					case 4:
-						titleName = this.navBarList[0].name
-						break;
-					case 1:
-						titleName = this.navBarList[1].name
-						break;
-					case 2:
-						titleName = this.navBarList[3].name
-						break;
-					case 3:
-						titleName = this.navBarList[2].name
-						break;
+			viewMore(e) {
+				let titleName = null;
+				let curGames = this.getCurrentGame();
+				if (curGames.length) {
+					titleName = curGames[0]['name'];
 				}
 				this.$Router.push({
-					path: "/pages/enjoy/recordList/recordList",
-					query: {
-						gameId: this.current,
-						titleName
-					},
-				});
-			},
-			orderDetail() {
-				let titleName = null
-				switch(Number(this.current)){
-					case 4:
-						titleName = this.navBarList[0].name
-						break;
-					case 1:
-						titleName = this.navBarList[1].name
-						break;
-					case 2:
-						titleName = this.navBarList[2].name
-						break;
-					case 3:
-						titleName = this.navBarList[3].name
-						break;
-				}
-				this.$Router.push({
-					path: "/pages/enjoy/enjoyOrder/enjoyOrder",
+					path: e.currentTarget.dataset.path,
 					query: {
 						gameId: this.current,
 						titleName
