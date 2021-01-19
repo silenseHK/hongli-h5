@@ -7,6 +7,7 @@
 			<text class=""> {{i18.enjoy.text8}}</text>
 			<text class=""> {{i18.enjoy.text9}}</text>
 			<text class=""> {{i18.enjoy.text10}}</text>
+			<text class=""> {{i18.enjoy.text11}}</text>
 			<text>
 				{{i18.enjoy.text2}}
 			</text>
