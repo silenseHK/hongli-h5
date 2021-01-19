@@ -209,7 +209,7 @@ export default {
 			balance: 'Available Balance',
 			bonus: 'Bonus',
 			envelope: 'Red Envelope',
-			promorion: 'My Promorion',
+			promorion: 'My Promotion',
 			wallet: 'My Wallet',
 			order: 'My Order',
 			statistics: 'Statistics',
