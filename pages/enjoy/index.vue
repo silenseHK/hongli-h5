@@ -196,66 +196,13 @@
 				<block v-for="(item, index) in produceList" :key="index">
 					<u-tr class="u-tr">
 						<u-td class="u-td">{{ item.number }}</u-td>
-						<u-td :class="daawTextList[item.prize_number]" align="center">{{
-              item.prize_number
-            }}</u-td>
-				<u-td class="u-td" align="center">{{(item.prize_number == 0 ? i18.enjoy.evenLucky : item.prize_number == 5 ? i18.enjoy.oddLucky : item.prize_number%2==0 ? i18.enjoy.Even : i18.enjoy.Odd)}}</u-td>
-						<!-- <u-td class="u-td" align="center" v-if="item.prize_number == 0">{{
-              i18.enjoy.evenLucky
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 1">{{
-              i18.enjoy.Odd
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 2">{{
-              i18.enjoy.evenLucky
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 3">{{
-              i18.enjoy.Even
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 4">{{
-              i18.enjoy.Odd
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 5">{{
-              i18.enjoy.evenLucky
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 6">{{
-              i18.enjoy.Odd
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 7">{{
-              i18.enjoy.Even
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 8">{{
-              i18.enjoy.Odd
-            }}</u-td>
-						<u-td class="u-td" align="center" v-if="item.prize_number == 9">{{
-              i18.enjoy.Even
-            }}</u-td> -->
+						<u-td :class="daawTextList[item.prize_number]" align="center">{{item.prize_number}}</u-td>
+						<u-td class="u-td" align="center">{{(item.prize_number == 0 ? i18.enjoy.evenLucky : item.prize_number == 5 ? i18.enjoy.oddLucky : item.prize_number%2==0 ? i18.enjoy.Even : i18.enjoy.Odd)}}</u-td>
 					</u-tr>
 				</block>
-
-				<!-- <u-tr class="u-tr">
-					<u-td class="u-td">20201110290</u-td>
-					<u-td class="u-td" align="center">0</u-td>
-					<u-td class="u-td" align="center">Even Lucky</u-td>
-
-				</u-tr>
-				<u-tr class="u-tr">
-					<u-td class="u-td">20201110290</u-td>
-					<u-td class="u-td" align="center">0</u-td>
-					<u-td class="u-td" align="center">Even Lucky</u-td>
-
-				</u-tr>
-				<u-tr class="u-tr">
-					<u-td class="u-td">20201110290</u-td>
-					<u-td class="u-td" align="center">0</u-td>
-					<u-td class="u-td" align="center">Even Lucky</u-td>
-
-				</u-tr> -->
 			</view>
 			<view class="u-flex u-row-between u-m-t-20 Record">
-				<view class="u-font-18" style="font-weight: bold">{{
-          i18.enjoy.order
-        }}</view>
+				<view class="u-font-18" style="font-weight: bold">{{ i18.enjoy.order }}</view>
 				<view @click="orderDetail">
 					<text>{{ i18.enjoy.more }} ></text>
 				</view>
@@ -263,78 +210,6 @@
 			<OrdeLists :orderList="ordersList"></OrdeLists>
 			<!-- 列表区域--end -->
 		</view>
-
-		<!-- 	<u-popup v-model="showOrder" mode="bottom" height="60%" closeable close-icon-color="white">
-			
-			<view class="silver">
-				<text>Silver Odd Gem</text>
-			</view>
-			<view class="contract">
-				<view>
-					<view>
-						<text>Contract Money</text>
-					</view>
-					<view class="u-flex">
-						<block v-for="(item,index) in contractList">
-							<text class="contract-box" :key="index" @click="handelContract(index)" :class="[contractIndex==index?'active-bg':'']">
-								{{item.num}}
-							</text>
-						</block>
-					</view>
-				</view>
-			</view>
-		
-			<view class="contract u-m-t-40">
-				<view>
-					<view>
-						<text>Number :</text>
-					</view>
-					<view class="u-flex">
-						<block v-for="(item,index) in numList">
-							<text class="contract-box" :key="index" @click="handelnum(item.num,index)" :class="[numIndex==index?'active-bg':'']">
-								{{item.num}}
-							</text>
-						</block>
-					</view>
-				</view>
-			</view>
-
-			<view class="contract u-m-t-40 ">
-				<view>
-					<view>
-						<view>Number :
-							<text class="u-font-14">
-								Maxinumlowersingular999 hands
-							</text>
-						</view>
-					</view>
-					<view class="u-flex u-m-t-30">
-						<u-number-box v-model="values" @change="valChange" size="30"></u-number-box>
-					</view>
-				</view>
-			</view>
-	
-			<view class="contract u-m-t-40 ">
-				<view>
-					<view>
-						<view>Fee :
-							<text class="u-font-14">
-								123
-							</text>
-						</view>
-					</view>
-				</view>
-				<u-radio-group v-model="terms" class="u-m-t-30 u-m-b-10">
-								<u-radio active-color="#2cc747" v-for="(item, index) in radioList" :key="index" :name="item.name" >
-									{{ item.name }}
-								</u-radio>
-							</u-radio-group>
-			</view>
-
-			<view class="u-m-b-0">
-				<u-button class="confim" :ripple="true">Confirm</u-button>
-			</view>
-		</u-popup> -->
 		<!-- 弹窗 -->
 		<OrderGren @openMusic='myVideo' :title="title" :id="id" :shoWorder="showOrder" :luckdata="luckyId" :colors1="colors1" @handeloshow="handeloshow"
 		 @handlePlacebet="handlePlacebet" :colors="colors" :contractList="contractList" :numList="numList"></OrderGren>
@@ -881,10 +756,10 @@
 						titleName = this.navBarList[1].name
 						break;
 					case 2:
-						titleName = this.navBarList[2].name
+						titleName = this.navBarList[3].name
 						break;
 					case 3:
-						titleName = this.navBarList[3].name
+						titleName = this.navBarList[2].name
 						break;
 				}
 				this.$Router.push({
