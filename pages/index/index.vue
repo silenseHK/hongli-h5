@@ -65,7 +65,7 @@
 
 		<!-- 模态框 -->
 		<u-modal v-model="showLoginAlert" :show-title="false" confirm-color="#a7866e" border-radius="22" show-cancel-button
-		 show-confirm-button :confirm-text="i18n.tabbar.group" :cancel-text="i18n.tabbar.chat" @confirm="handelHaidel"
+		 show-confirm-button :confirm-text="right.text" :cancel-text="left.text" @confirm="handelHaidel"
 		 @cancel="handlehia">
 			<image src="../../static/home/home_dialog_top.ac6d64ef.png" mode="scaleToFill" style="width: 100%; height: 300upx; position: relative;">
 				<u-icon name="close" color="#8d8d8d" size="28" style="position: absolute; top: 10px; right: 12px;" @click="showLoginAlert = false;"></u-icon>
@@ -124,6 +124,14 @@
 				appDownloadInfo: {
 			    	status: 0,
 					link: ""
+				},
+				left:{
+					text: '',
+					link: ''
+				},
+				right:{
+					text: '',
+					link: ''
 				}
 			}
 		},
@@ -254,19 +262,24 @@
 				const data = await this.$api.getAlert()
 				if (data.code === 200) {
 					const result = data.data;
-					[this.alertContentLogout, this.alertContentLogin] = [result.logout_alert, result.login_alert]
+					this.alertContentLogout = result.logout_alert.content;
+					this.alertContentLogin = result.login_alert.content;
+					this.left = result.login_alert.btn.left;
+					this.right = result.login_alert.btn.right;
+					// [this.alertContentLogout, this.alertContentLogin] = [result.logout_alert, result.login_alert]
 					// [this.alertContentLogout, this.alertContentLogin] = ["<h1>你好</h1>", result.login_alert]
 				}
 			},
 
 			async handelHaidel() {
 				this.isModul = false;
-				const data = await this.$api.getGroup()
-				if (data.code === 200) {
-					console.log('执行')
+				// const data = await this.$api.getGroup()
+				// if (data.code === 200) {
+					// console.log('执行')
 					// window.open(data.data.whats_group_url)
-					window.location.href = data.data.whats_group_url
-				}
+					if(this.right.link)
+						window.location.href = this.right.link
+				// }
 			},
 
 			async banners() {
@@ -334,15 +347,16 @@
 				}
 			},
 			async handlehia() {
-				const data = await this.$api.getservice()
+				// const data = await this.$api.getservice()
 				// this.isModul = false;
-				if (data.code === 200) {
+				// if (data.code === 200) {
 					// this.$Router.replace({
 					// 	name: data.data.whats_service_url
 					// })
 					// window.open(data.data.whats_service_url)
-					window.location.href = data.data.whats_service_url
-				}
+					if(this.left.link)
+						window.location.href = this.left.link
+				// }
 			},
             async products() {
 			    this.productSearch.status = 'loading';
