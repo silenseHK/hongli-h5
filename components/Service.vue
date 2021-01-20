@@ -9,7 +9,7 @@
 				</view>
 			</view>
 			<view class="" v-if="isServer">
-				<view v-for="(item, k) in setting" v-if="k < 2" :key="k" :class="{'app-grouap':k==0?true:false, 'app-whates':k==1?true:false, 'u-flex-col':true,'u-row-center':true, 'u-p-t-10':true}" @tap="handleClick(0)">
+				<view v-for="(item, k) in setting" v-if="k < 2" :key="k" :class="{'app-grouap':k==0?true:false, 'app-whates':k==1?true:false, 'u-flex-col':true,'u-row-center':true, 'u-p-t-10':true}" @tap="handleClick(k)">
 					<image :src="require(`../static/service/${item.icon}.png`)" mode="" style="width: 40upx; height: 40upx; margin: auto;"></image>
 					<text class="u-text-center u-p-b-20" style="color: white; font-size: 18upx;">{{item.title}}</text>
 				</view>
