@@ -588,12 +588,14 @@
 				this.show = true
 				this.status = 1;
 				this.form.bank_num = item.bank_num;
-				this.form.bank_num1 = this.form.bank_num,
-					this.form.bank_opening = item.bank_opening;
+				this.form.bank_num1 = this.form.bank_num;
+				this.form.bank_opening = item.bank_opening;
 				this.form.phone = item.phone;
 				this.form.account_holder = item.account_holder;
 				this.form.bank_type_id = item.bank_type_id;
-				this.form.id = item.id
+				this.form.id = item.id;
+				this.form.email = item.mail;
+				this.form.ifsc_code = item.ifsc_code;
 			},
 			/* 
 				选择银行卡 
