@@ -276,7 +276,7 @@
 			},
 			handelEnvelope() {
 				this.$Router.push({
-					name: 'envelopes'
+					name: 'envelope'
 				})
 			},
 			handelService() {
