@@ -34,7 +34,7 @@ export const getBetting = data =>http.post('betting',data) //彩票游戏投注�
 	
 
 export const getWithdrawal = data =>http.post('user/withdrawal',data) //提交提现
-export const getwithAll = data =>http.get('withdrawal/record',data) //获取提现记录
+export const getwithAll = data =>http.post('withdrawal/record',data) //获取提现记录
 export const gameList = data =>http.post('game_list',data)//获取投注记录
 export const requestsBetting = data =>http.post('betting_list',data)//获取投注记录
 

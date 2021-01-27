@@ -1,12 +1,18 @@
 <template>
 	<view>
-		<uni-nav-bar :background-color="background" @clickLeft="handelLeft" @clickRight="handelRight" :color="color" :title="i18.records.recordsNavbar">
+		<!-- <uni-nav-bar :background-color="background" @clickLeft="handelLeft" @clickRight="handelRight" :color="color" :title="i18.records.recordsNavbar">
 
 			<view slot="left">
 				<u-icon name="arrow-left"></u-icon>
 			</view>
 			<view slot="right">Refresh</view>
-		</uni-nav-bar>
+		</uni-nav-bar> -->
+		
+		<view class=" u-p-l-30 u-p-r-30">
+			<u-subsection mode="subsection" bold class="u-m-t-20 tab-switch" button-color="#cfa65f" @change="submenu" bg-color="white"
+			 inactive-color="#cfa65f" :list="lists" :current="0" :animation="true" active-color="#cfa65f"></u-subsection>
+		</view>
+		
 		<view>
 			<view class="u-p-l-20 u-p-r-20 silver-card ">
 				<block v-for="(item,index) in withdrawal" :key="index">
@@ -98,6 +104,9 @@
 				</block>
 			</view>
 		</view>
+	
+		<u-loadmore :status="loading" :load-text="loadText" />
+	
 	</view>
 </template>
 
@@ -115,7 +124,27 @@
 				background: 'black',
 				time: '',
 				withdrawal: [],
-			
+				
+				lists: [{
+						name: '  Pending  '
+					},
+					{
+						name: '  Success  '
+					},
+					{
+						name: '  Fail  '
+					}
+				],
+				page: 1,
+				size: 8,
+				status: 0,
+				loading: 'nomore',
+				loadText: {
+					loadmore: 'loadmore',
+					loading: 'loading',
+					nomore: 'nomore'
+				},
+				isLoadMore: true
 			};
 		},
 		onLoad() {
@@ -128,10 +157,28 @@
 		},
 		onReady() {
 			uni.setNavigationBarTitle({
-				title: this.i18.records.recordsNavbar
+				title: this.i18.records.recordsNavbar,
 			})
+			this.lists[0].name = this.i18.records.pending;
+			this.lists[1].name = this.i18.records.success;
+			this.lists[2].name = this.i18.records.fail;
+		},
+		onReachBottom() { //上拉触底函数
+			if (!this.isLoadMore) { //此处判断，上锁，防止重复请求
+				this.isLoadMore = true
+				this.page += 1
+				this.getRecords()
+			}
 		},
 		methods: {
+			
+			submenu(e){
+				this.withdrawal = [];
+				this.status = e;
+				this.page = 1;
+				this.getRecords()
+			},
+			
 			handelLeft() {
 				this.$router.go(-1)
 			},
@@ -139,21 +186,26 @@
 				this.getRecords()
 			},
 			async getRecords() {
-				const data = await this.$api.getwithAll()
+				let {status, page, size} = this
+				this.loading = 'loading'
+				const data = await this.$api.getwithAll({status, page, size})
 				// console.log((data))
 				if (data.code === 200) {
-
-					// this.time = formatDate(data.data.create_time)
-					// const lists = []
-					// data.data.map((item,index)=>{
-					// 	 lists.push({
-					// 		create_time:timestampToTime(item.create_time),
-					// 		status:item.status,
-					// 		money:item.money,
-					// 		bank_num:item.bank
-					// 	})
-					// })
-					this.withdrawal = data.data
+					let res = data.data
+					
+					if (res.data) {
+						this.withdrawal = this.withdrawal.concat(res.data)
+						if(res.next_page_url){
+							this.loading = 'loadmore'
+							this.isLoadMore = false;
+						}else{
+							this.loading = 'nomore'
+						}
+					} else {
+						this.loadStatus = 'nomore'
+					}
+				}else{
+					
 				}
 			}
 		}
@@ -166,8 +218,7 @@
 
 		font-size: 25rpx;
 		border-radius: 12upx;
-
-
+		}
 		.content-text {
 			color: #e2bf88;
 		}
@@ -177,7 +228,7 @@
 		}
 
 		.silver-item {
-			margin: 90upx 0;
+			margin: 20upx 0;
 			border-radius: 12upx;
 			box-shadow: 0 4rpx 19rpx 0 rgba(0, 0, 0, .2);
 
@@ -187,5 +238,5 @@
 			background-color: #a7866e;
 			color: white;
 		}
-	}
+	
 </style>
