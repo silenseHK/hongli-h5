@@ -86,6 +86,9 @@
             "mode" : "hash"
         },
         "title" : "sky-shop",
-        "domain" : "cool7.in"
+        "domain" : "goshop6.in",
+        "sdkConfigs" : {
+            "maps" : {}
+        }
     }
 }
