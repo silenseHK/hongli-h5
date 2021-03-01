@@ -203,7 +203,8 @@ export default {
 
 			recharges: 'Recharge',
 			issue: "Issue",
-
+			
+			lockText: "The game stopped betting",
 		},
 		mine: {
 			mineNavabr: ' Personal Center ',

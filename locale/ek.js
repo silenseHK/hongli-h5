@@ -201,6 +201,8 @@ export default {
 			paymentRight: ' मैन्युअल भुगतान ',
 			recharges: 'रिचार्ज',
 			issue: "मुद्दा",
+			
+			lockText: "खेल बिल्ड बन्द कर दिया",
 		},
 		mine: {
 			mineNavabr: 'पर्सनल सेंटर',

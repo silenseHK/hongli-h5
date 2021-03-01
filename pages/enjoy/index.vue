@@ -67,7 +67,7 @@
 				<!-- 		<u-count-down ref="uCountDown" @end="handleStop" :timestamp="timestamp" @change="countdownMonitor" :show-border="true"
 						 font-size="58" color="#000000" border-color="#909399"></u-count-down> -->
 						<u-count-down ref="uCountDown" @end="handleStop" :timestamp="timestamp" :show-border="true"
-						 font-size="58" color="#000000" border-color="#909399"></u-count-down>
+						 font-size="58" color="#000000" border-color="#909399" @change="changeTimestamp"></u-count-down>
 						<!-- <text>{{timestamp}}</text> -->
 					</view>
 				</view>
@@ -94,12 +94,14 @@
 		<!-- tab --end -->
 		<view class="u-m-t-30 u-p-l-40 u-p-r-40">
 			<!-- 彩色球区域--start -->
-
+			
+			<u-notice-bar mode="horizontal" v-show="lock_game" :is-circular="false" :volume-icon="false" :list="[i18.enjoy.lockText]"></u-notice-bar>
+			
 			<view class="digital-box" v-if="current == 4">
 				<!-- 11111111111111111111111 -->
 				<view class="u-flex u-row-between">
 					<block v-for="(items, index) in luckyList1" :key="index">
-						<view class="odd-text fz34" :class="luckyColor[index]" @click="handelOrder(items, index)" :key="index">
+						<view class="odd-text fz34" :class="[lock_game?luckyColor[3]:luckyColor[index]]" @click="handelOrder(items, index)" :key="index">
 							<text>{{ items.title }}</text>
 						</view>
 					</block>
@@ -108,7 +110,7 @@
 				<view class="u-flex u-m-t-30 u-m-b-30" style="flex-wrap: wrap;justify-content: space-around;">
 					<block v-for="(itemlg, index) in digitalList1" :key="index">
 						<view class="numberBox">
-							<view class="odd-text1 fz50 event-text1" :class="digitalColo[index]" @click="placeaBet1(itemlg, index)" :key="index"> 
+							<view class="odd-text1 fz50 event-text1" :class="[lock_game?luckyColor[3]:digitalColo[index]]" @click="placeaBet1(itemlg, index)" :key="index"> 
 								<text>{{ itemlg.title }}</text>
 							</view>
 						</view>
@@ -119,7 +121,7 @@
 				<!-- 1111111111111111111111 -->
 				<view class="u-flex u-row-between">
 					<block v-for="(items, index) in luckyList4" :key="index">
-						<view class="odd-text fz34" :class="luckyColor[index]" @click="handelOrder(items, index)" :key="index">
+						<view class="odd-text fz34" :class="[lock_game?luckyColor[3]:luckyColor[index]]" @click="handelOrder(items, index)" :key="index">
 							<text>{{ items.title }}</text>
 						</view>
 					</block>
@@ -128,7 +130,7 @@
 				<view class="u-flex u-m-t-30 u-m-b-30" style="flex-wrap: wrap">
 					<block v-for="(itemlg, index) in digitalList4" :key="index">
 						<view class="numberBox">
-							<view class="odd-text1 fz50 event-text1" :class="digitalColo[index]" @click="placeaBet1(itemlg, index)" :key="index">
+							<view class="odd-text1 fz50 event-text1" :class="[lock_game?luckyColor[3]:digitalColo[index]]" @click="placeaBet1(itemlg, index)" :key="index">
 								<text>{{ itemlg.title }}</text>
 							</view>
 						</view>
@@ -139,7 +141,7 @@
 				<!-- 1111111111111111111 -->
 				<view class="u-flex u-row-between">
 					<block v-for="(items, index) in luckyList2" :key="index">
-						<view class="odd-text fz34" :class="luckyColor[index]" @click="handelOrder(items, index)" :key="index">
+						<view class="odd-text fz34" :class="[lock_game?luckyColor[3]:luckyColor[index]]" @click="handelOrder(items, index)" :key="index">
 							<text>{{ items.title }}</text>
 						</view>
 					</block>
@@ -148,7 +150,7 @@
 				<view class="u-flex u-m-t-30 u-m-b-30" style="flex-wrap: wrap">
 					<block v-for="(itemlg, index) in digitalList2" :key="index">
 						<view class="numberBox">
-							<view class="odd-text1 event-text1 fz50" :class="digitalColo[index]" @click="placeaBet1(itemlg, index)" :key="index">
+							<view class="odd-text1 event-text1 fz50" :class="[lock_game?luckyColor[3]:digitalColo[index]]" @click="placeaBet1(itemlg, index)" :key="index">
 								<text>{{ itemlg.title }}</text>
 							</view>
 						</view>
@@ -159,7 +161,7 @@
 				<!-- 11111111111111111111111 -->
 				<view class="u-flex u-row-between">
 					<block v-for="(items, index) in luckyList3" :key="index">
-						<view class="odd-text fz34" :class="luckyColor[index]" @click="handelOrder(items, index)" :key="index">
+						<view class="odd-text fz34" :class="[lock_game?luckyColor[3]:luckyColor[index]]" @click="handelOrder(items, index)" :key="index">
 							<text>{{ items.title }}</text>
 						</view>
 					</block>
@@ -168,7 +170,7 @@
 				<view class="u-flex u-m-t-30 u-m-b-30" style="flex-wrap: wrap">
 					<block v-for="(itemlg, index) in digitalList3" :key="index">
 						<view class="numberBox">
-							<view class="odd-text1 event-text1 fz50" :class="digitalColo[index]" @click="placeaBet1(itemlg, index)" :key="index">
+							<view class="odd-text1 event-text1 fz50" :class="[lock_game?luckyColor[3]:digitalColo[index]]" @click="placeaBet1(itemlg, index)" :key="index">
 								<text>{{ itemlg.title }}</text>
 							</view>
 						</view>
@@ -249,6 +251,7 @@
 				terms: "",
 				id: 0,
 				timestamp: "0",
+				lock_list: ['The game stopped betting'],
 				ordersList: [], //购买记录
 				produceList: [], //开奖记录
 				luckyId: {
@@ -596,7 +599,7 @@
 						num: 10000,
 					},
 				],
-				luckyColor: ["lucky1", "lucky2", "lucky3"],
+				luckyColor: ["lucky1", "lucky2", "lucky3" ,"lock"],
 				numList: [{
 						num: 3,
 					},
@@ -618,6 +621,9 @@
 				 * */
 				current: null,
 				numMony: "",
+				
+				lock_time: 10,
+				lock_game: false
 			};
 		},
 		watch: {
@@ -703,6 +709,19 @@
 					this.timestamp = data.data.count_down;
 					this.produceList = data.data.pr;
 					this.ordersList = data.data.lx;
+					this.lock_time = data.data.lock_time;
+					this.lock_game = false;
+					this.checkLock();
+				}
+			},
+			checkLock(timestamp=0){
+				timestamp = timestamp ?timestamp: this.timestamp;
+				// console.log(this.lock_time);
+				// console.log(timestamp);
+				if(this.lock_time > timestamp){
+					this.lock_game = true;
+				}else{
+					this.lock_game = false;
 				}
 			},
 			submenu(index) {
@@ -743,28 +762,32 @@
 			},
 			// 订单
 			handelOrder(item, index) {
-				this.myVideo()
-				// console.log(item, index)
-				if (index == 0) {
-					// console.log(item);
-					this.showOrder = true;
-					this.colors = "#2cc747";
-					this.colors1 = "active-bg1";
-					this.luckyId.title = item.title;
-					this.luckyId.id = item.id;
-					this.luckyId.gameid = item.gamId;
-				} else if (index == 1) {
-					this.showOrder = true;
-					this.colors = "#ff5153";
-					this.colors1 = "active-bg2";
-					this.luckyId.title = item.title;
-					(this.luckyId.id = item.id), (this.luckyId.gameid = item.gamId);
-				} else if (index == 2) {
-					this.showOrder = true;
-					this.colors = "#8b6de9";
-					this.colors1 = "active-bg3";
-					this.luckyId.title = item.title;
-					(this.luckyId.id = item.id), (this.luckyId.gameid = item.gamId);
+				if(this.lock_game){
+					
+				}else{
+					this.myVideo()
+					// console.log(item, index)
+					if (index == 0) {
+						// console.log(item);
+						this.showOrder = true;
+						this.colors = "#2cc747";
+						this.colors1 = "active-bg1";
+						this.luckyId.title = item.title;
+						this.luckyId.id = item.id;
+						this.luckyId.gameid = item.gamId;
+					} else if (index == 1) {
+						this.showOrder = true;
+						this.colors = "#ff5153";
+						this.colors1 = "active-bg2";
+						this.luckyId.title = item.title;
+						(this.luckyId.id = item.id), (this.luckyId.gameid = item.gamId);
+					} else if (index == 2) {
+						this.showOrder = true;
+						this.colors = "#8b6de9";
+						this.colors1 = "active-bg3";
+						this.luckyId.title = item.title;
+						(this.luckyId.id = item.id), (this.luckyId.gameid = item.gamId);
+					}
 				}
 			},
 			// 点击contrct
@@ -791,13 +814,15 @@
 			},
 			// 下注数字1
 			placeaBet1(item) {
-				this.myVideo()
-				// console.log(item);
-				this.showOrder = true;
-				this.colors = "#a88571";
-				this.colors1 = "active-bg4";
-				this.luckyId.title = item.title;
-				(this.luckyId.id = item.id), (this.luckyId.gameid = item.gamId);
+				if(!this.lock_game){
+					this.myVideo()
+					// console.log(item);
+					this.showOrder = true;
+					this.colors = "#a88571";
+					this.colors1 = "active-bg4";
+					this.luckyId.title = item.title;
+					(this.luckyId.id = item.id), (this.luckyId.gameid = item.gamId);
+				}
 			},
 			// 事件触发，每秒一次
 			async countdownMonitor(timeDatas) {
@@ -822,6 +847,9 @@
 							this.ordersList = data.data.lx;
 							this.timestamp = data.data.count_down;
 							this.numMony = data.data.balance;
+							this.lock_time = data.data.lock_time;
+							this.lock_game = false;
+							this.checkLock();
 							uni.setStorageSync('money', data.data.balance)
 						}
 					},5000)
@@ -850,6 +878,9 @@
 						this.ordersList = res.lx;
 						this.timestamp = res.count_down;
 						this.numMony = res.balance;
+						this.lock_time = res.lock_time;
+						this.lock_game = false;
+						this.checkLock();
 						uni.setStorageSync('money', res.balance)
 						uni.hideLoading()
 					}
@@ -901,7 +932,12 @@
 				this.getGames(this.current)
 				this.numMony = value;
 				uni.setStorageSync('money', value)
-			}
+			},
+			
+			//监听倒计时
+			changeTimestamp(timestamp){
+				this.checkLock(timestamp);
+			},
 		},
 	};
 </script>
@@ -1045,6 +1081,9 @@
 
 	.lucky3 {
 		background: #8b6de9 !important;
+	}
+	.lock {
+		background: #dddddd !important;
 	}
 
 	.silver {
